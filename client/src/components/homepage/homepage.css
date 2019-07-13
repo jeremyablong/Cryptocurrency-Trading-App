@@ -1,6 +1,7 @@
 .register{
     background: -webkit-linear-gradient(left, #3931af, #00c6ff);
     padding: 3%;
+    height: 100vh;
 }
 .register-left{
     text-align: center;
@@ -91,4 +92,7 @@
     margin-top: 8%;
     margin-bottom: -15%;
     color: #495057;
+}
+.text_red {
+    color: red;
 }

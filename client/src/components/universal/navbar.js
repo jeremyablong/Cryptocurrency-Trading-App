@@ -11,21 +11,57 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import axios from "axios";
+import { loginUser } from "../../actions/index.js";
+import store from "../../store/store.js";
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      data: []
     };
   }
-  toggle() {
+  componentDidMount () {
+    axios.get("/api/profile").then((res) => {
+      console.log(res.data);
+      this.setState({
+        data: res.data
+      })
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
+  };
+  redirectRegistration = () => {
+    this.props.history.push("/");
+  };
+  redirectLogin = () => {
+    this.props.history.push("/login");
+  };
+  logout = () => {
+    
+  };
+  authorize = ()=> {
+    console.log(store.getState().authorize.data);
+    if (this.props.reg === "Email found, account verified..") {
+      return (
+        <button onClick={this.logout} style={{ marginRight: "20px" }} className="btn btn-danger" href="/">LOGOUT</button>
+      );
+    } else {
+      return (
+        <button onClick={this.redirectLogin} style={{ marginRight: "20px" }} className="btn btn-info" href="/">LOGIN</button>
+      );
+    }
+  };
   render() {
     return (
       <div>
@@ -57,6 +93,12 @@ class Navigation extends Component {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+              <NavItem>
+                {this.authorize()}
+              </NavItem>
+              <NavItem>
+                <button onClick={this.redirectRegistration} className="btn btn-success" href="/">REGISTER</button>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
@@ -64,5 +106,13 @@ class Navigation extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  console.log(state);
+  if (state.authorize.data) {
+    return {
+      reg: state.authorize.data
+    }
+  }
+}
 
-export default Navigation;
+export default withRouter(connect(mapStateToProps, { loginUser })(Navigation));

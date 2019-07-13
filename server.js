@@ -12,6 +12,10 @@ app.use("/api/users", require("./routes/api/users"));
 app.use("/api/profile", require("./routes/api/profile"));
 app.use("/api/posts", require("./routes/api/posts"));
 app.use("/api/auth", require("./routes/api/auth"));
+app.use("/auth/login", require("./routes/login/auth.js"));
+
+
+
 // index route
 app.get("/", (req, res) => {
 	res.send("API is running");
