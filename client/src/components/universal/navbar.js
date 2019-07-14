@@ -14,7 +14,7 @@ import {
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import axios from "axios";
-import { loginUser } from "../../actions/index.js";
+import { loginUser, signOut } from "../../actions/index.js";
 import store from "../../store/store.js";
 import  { Link } from "react-router-dom";
 import "./universal.css";
@@ -26,7 +26,9 @@ class Navigation extends Component {
 
     this.state = {
       isOpen: false,
-      data: []
+      data: [],
+      loginEmail: "",
+      loginPassword: ""
     };
   }
   componentDidMount () {
@@ -51,7 +53,12 @@ class Navigation extends Component {
     this.props.history.push("/login");
   };
   logout = () => {
-    
+
+    this.props.signOut();
+
+    console.log("Logout");
+
+    this.props.history.push("/");
   };
   authorize = ()=> {
     console.log(store.getState().authorize.data);
@@ -114,7 +121,6 @@ class Navigation extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log(state);
   if (state.authorize.data) {
     return {
       reg: state.authorize.data
@@ -122,4 +128,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { loginUser })(Navigation));
+export default withRouter(connect(mapStateToProps, { loginUser, signOut })(Navigation));

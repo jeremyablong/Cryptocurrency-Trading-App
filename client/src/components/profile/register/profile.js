@@ -42,12 +42,11 @@ constructor () {
 		console.log(store.getState().authorize.data);
 
 		setTimeout(() => {
-this.forceUpdate();
+			this.forceUpdate();
 		}, 300);
 	};
 
-	renderIfSignedIn = () => {
-
+	renderIfSignedIn = () => {	
 		if (store.getState().authorize.data === "Email found, account verified..") {
 		return (
 			<div className="profile_container">

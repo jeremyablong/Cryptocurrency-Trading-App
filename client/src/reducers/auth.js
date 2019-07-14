@@ -1,4 +1,4 @@
-import { AUTH } from "../actions/types.js";
+import { AUTH, SIGNOUT } from "../actions/types.js";
 
 export default (state = {}, action) => {
 	switch (action.type) {
@@ -6,6 +6,11 @@ export default (state = {}, action) => {
 			return {
 				...state,
 				data: action.email
+			}
+		case SIGNOUT: 
+			return {
+				...state,
+				data: action.payload
 			}
 		default: 
 			return state;
