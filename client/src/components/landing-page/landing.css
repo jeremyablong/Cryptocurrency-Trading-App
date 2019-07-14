@@ -1,3 +1,27 @@
+@media only screen and (max-width: 700px) {
+  .desk {
+    display: none;
+  }
+}
+@media only screen and (min-width: 701px) {
+  .mobile {
+    display: none;
+  }
+}
+.jumb {
+  padding-top: 0px !important;
+  height: 100% !important;
+  min-height: 100%;
+  font-family: 'Oswald', sans-serif;
+  background-image: url("../../images/a1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.display-3 {
+  font-weight: bold;
+  color: white;
+  text-shadow: -1px -1px 0 darkred, 1px -1px 0 darkred, -1px 1px 0 darkred, 1px 1px 0 darkred;
+}
 .jumbotron {
   height: 100vh;
   min-height: 100%;

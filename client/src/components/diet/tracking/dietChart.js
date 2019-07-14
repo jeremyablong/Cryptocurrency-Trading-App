@@ -63,6 +63,42 @@ constructor () {
 		    }
 		});
 	}
+	updateReRenderChart = () => {
+		const { sunday, monday, tuesday, wednesday, thursday, friday, saturday } = this.state;
+
+		let ctx = document.getElementById('myChart').getContext('2d');
+		let myChart = new Chart(ctx, {
+		    type: 'line',
+		    data: {
+		        labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Firday', 'Saturday'],
+		        datasets: [{
+		            label: 'Calories burned in last 7 days',
+		            data: [ sunday, monday, tuesday, wednesday, thursday, friday, saturday ],
+		            backgroundColor: [
+		                'rgba(255, 99, 132, 0.2)',
+		                'rgba(54, 162, 235, 0.2)',
+		                'rgba(255, 206, 86, 0.2)',
+		                'rgba(75, 192, 192, 0.2)',
+		                'rgba(153, 102, 255, 0.2)',
+		                'rgba(255, 159, 64, 0.2)'
+		            ],
+		            borderColor: [
+		                'rgba(255, 99, 132, 1)',
+		                'rgba(54, 162, 235, 1)',
+		                'rgba(255, 206, 86, 1)',
+		                'rgba(75, 192, 192, 1)',
+		                'rgba(153, 102, 255, 1)',
+		                'rgba(255, 159, 64, 1)'
+		            ],
+		            borderWidth: 1
+		        }]
+		    },
+		    options: {
+		        responsive: true,
+		        maintainAspectRatio: false
+		    }
+		});
+	};
 	handleSubmitSunday = (e) => {
 		
 		const { sunday, monday, tuesday, wednesday, thursday, friday, saturday } = this.state;
@@ -373,6 +409,7 @@ constructor () {
 	};
 	renderSunday = () => {
 		return (
+
 		    <div className="col-md-9">
 				<div className="form_main">
 		                <h4 className="heading"><strong>Register calories for </strong> SUNDAY <span></span></h4>
@@ -424,7 +461,7 @@ constructor () {
 									description: e.target.value
 		                    	})
 		                    }} placeholder={this.state.description} name="description" type="text" className="txt_3"></textarea>
-		                     <input type="submit" value="submit" name="submit" className="txt2"/>
+		                     <input type="submit" value="DOUBLE CLICK TO SUBMIT" name="submit" className="txt2"/>
 		                </form>
 		            </div>
 		            </div>
@@ -484,7 +521,7 @@ constructor () {
 									description: e.target.value
 		                    	})
 		                    }} placeholder={this.state.description} name="description" type="text" className="txt_3"></textarea>
-		                     <input type="submit" value="submit" name="submit" className="txt2"/>
+		                     <input type="submit" value="DOUBLE CLICK TO SUBMIT" name="submit" className="txt2"/>
 		                </form>
 		            </div>
 		            </div>
@@ -544,7 +581,7 @@ constructor () {
 									description: e.target.value
 		                    	})
 		                    }} placeholder={this.state.description} name="description" type="text" className="txt_3"></textarea>
-		                     <input type="submit" value="submit" name="submit" className="txt2"/>
+		                    <input type="submit" value="DOUBLE CLICK TO SUBMIT" name="submit" className="txt2"/>
 		                </form>
 		            </div>
 		            </div>
@@ -604,7 +641,7 @@ constructor () {
 									description: e.target.value
 		                    	})
 		                    }} placeholder={this.state.description} name="description" type="text" className="txt_3"></textarea>
-		                     <input type="submit" value="submit" name="submit" className="txt2"/>
+		                     <input type="submit" value="DOUBLE CLICK TO SUBMIT" name="submit" className="txt2"/>
 		                </form>
 		            </div>
 		            </div>
@@ -664,7 +701,7 @@ constructor () {
 									description: e.target.value
 		                    	})
 		                    }} placeholder={this.state.description} name="description" type="text" className="txt_3"></textarea>
-		                     <input type="submit" value="submit" name="submit" className="txt2"/>
+		                     <input type="submit" value="DOUBLE CLICK TO SUBMIT" name="submit" className="txt2"/>
 		                </form>
 		            </div>
 		            </div>
@@ -724,7 +761,7 @@ constructor () {
 									description: e.target.value
 		                    	})
 		                    }} placeholder={this.state.description} name="description" type="text" className="txt_3"></textarea>
-		                     <input type="submit" value="submit" name="submit" className="txt2"/>
+		                     <input type="submit" value="DOUBLE CLICK TO SUBMIT" name="submit" className="txt2"/>
 		                </form>
 		            </div>
 		            </div>
@@ -784,144 +821,152 @@ constructor () {
 									description: e.target.value
 		                    	})
 		                    }} placeholder={this.state.description} name="description" type="text" className="txt_3"></textarea>
-		                     <input type="submit" value="submit" name="submit" className="txt2"/>
+		                     <input type="submit" value="DOUBLE CLICK TO SUBMIT" name="submit" className="txt2"/>
 		                </form>
 		            </div>
 		            </div>
 		        </div>
+
 		);
 	}
 	render() {
 		const { sunClicked, monClicked, tuesClicked, wedClicked, thurClicked, friClicked, satClicked } = this.state;
 		return (
-		<div>
+			<div>
+				<div className="row">
+					<div className="col-md-12 mx-auto">
+						<button style={{ margin: "13px 0px 0px 13px" }} onClick={this.updateReRenderChart} className="btn btn-info">Re-Render Chart</button>
+					</div>
+				</div>
+			<div>
 			<div>
 				<canvas id="myChart" width="400" height="400"></canvas>
 			
 			</div>
-			
 			<div>
-			<div className="container-fluid">
-					<div className="row">
-					<div className="col-md-3">
-					<div className="row btn_row">
-						<button onClick={this.renderSunday, () => {
-									this.setState({
-										sunClicked: true,
-										monClicked: false,
-										tuesClicked: false,
-										wedClicked: false,
-										thurClicked: false,
-										friClicked: false,
-										satClicked: false
-									})
-						}} className="btn btn-success">Add calories for sunday</button>
-					</div>
-					<div className="row btn_row">
-						<button onClick={this.renderMongday, () => {
-									this.setState({
-										sunClicked: false,
-										monClicked: true,
-										tuesClicked: false,
-										wedClicked: false,
-										thurClicked: false,
-										friClicked: false,
-										satClicked: false
-									})
-						}} className="btn btn-danger">Add calories for monday</button>
-					</div>
-					<div className="row btn_row">
-						<button onClick={this.renderTuesday, () => {
-									this.setState({
-										sunClicked: false,
-										monClicked: false,
-										tuesClicked: true,
-										wedClicked: false,
-										thurClicked: false,
-										friClicked: false,
-										satClicked: false
-									})
-						}} className="btn btn-primary">Add calories for tuesday</button>
-					</div>
-					<div className="row btn_row">
-						<button onClick={this.renderWednesday, () => {
-									this.setState({
-										sunClicked: false,
-										monClicked: false,
-										tuesClicked: false,
-										wedClicked: true,
-										thurClicked: false,
-										friClicked: false,
-										satClicked: false
-									})
-						}} className="btn btn-info">Add calories for wednesday</button>
-					</div>
-					<div className="row btn_row">
-						<button onClick={this.renderThursday, () => {
-									this.setState({
-										sunClicked: false,
-										monClicked: false,
-										tuesClicked: false,
-										wedClicked: false,
-										thurClicked: true,
-										friClicked: false,
-										satClicked: false
-									})
-						}} className="btn btn-warning">Add calories for thrusday</button>
-					</div>
-					<div className="row btn_row">
-						<button onClick={this.renderFriday, () => {
-									this.setState({
-										sunClicked: false,
-										monClicked: false,
-										tuesClicked: false,
-										wedClicked: false,
-										thurClicked: false,
-										friClicked: true,
-										satClicked: false
-									})
-						}} className="btn btn-success">Add calories for friday</button>
-					</div>
-					<div className="row btn_row">
-						<button onClick={this.renderSaturday, () => {
-									this.setState({
-										sunClicked: false,
-										monClicked: false,
-										tuesClicked: false,
-										wedClicked: false,
-										thurClicked: false,
-										friClicked: false,
-										satClicked: true
-									})
-						}} className="btn btn-danger">Add calories for saturday</button>
-					</div>
-					</div>
-					{sunClicked ? this.renderSunday() : null}
-					{monClicked ? this.renderMonday() : null}
-					{tuesClicked ? this.renderTuesday() : null}
-					{wedClicked ? this.renderWednesday() : null}
-					{thurClicked ? this.renderThursday() : null}
-					{friClicked ? this.renderFriday() : null}
-					{satClicked ? this.renderSaturday() : null}
-{/*				    <div className="col-md-9">
-						<div className="form_main">
-				                <h4 className="heading"><strong>Register calories for </strong> Sunday <span></span></h4>
-				                <div className="form">
-				                <form onSubmit={this.handleSubmit} id="contactFrm" name="contactFrm">
-				                    <input type="text" required="" placeholder="Please input your Name" value="" name="name" className="txt"/>
-				                    <input type="text" required="" placeholder="Please input your mobile No" value="" name="mob" className="txt"/>
-				                    <input type="text" required="" placeholder="Please input your Email" value="" name="email" className="txt"/>
-				                    
-				                	 <textarea placeholder="Your Message" name="mess" type="text" className="txt_3"></textarea>
-				                     <input type="submit" value="submit" name="submit" className="txt2"/>
-				                </form>
-				            </div>
-				            </div>
-				        </div>*/}
+				<div className="container-fluid">
+						<div className="row">
+						<div className="col-md-3">
+						<div className="row btn_row">
+							<button onClick={this.renderSunday, () => {
+										this.setState({
+											sunClicked: true,
+											monClicked: false,
+											tuesClicked: false,
+											wedClicked: false,
+											thurClicked: false,
+											friClicked: false,
+											satClicked: false
+										})
+							}} className="btn btn-success">Add calories for sunday</button>
+						</div>
+						<div className="row btn_row">
+							<button onClick={this.renderMongday, () => {
+										this.setState({
+											sunClicked: false,
+											monClicked: true,
+											tuesClicked: false,
+											wedClicked: false,
+											thurClicked: false,
+											friClicked: false,
+											satClicked: false
+										})
+							}} className="btn btn-danger">Add calories for monday</button>
+						</div>
+						<div className="row btn_row">
+							<button onClick={this.renderTuesday, () => {
+										this.setState({
+											sunClicked: false,
+											monClicked: false,
+											tuesClicked: true,
+											wedClicked: false,
+											thurClicked: false,
+											friClicked: false,
+											satClicked: false
+										})
+							}} className="btn btn-primary">Add calories for tuesday</button>
+						</div>
+						<div className="row btn_row">
+							<button onClick={this.renderWednesday, () => {
+										this.setState({
+											sunClicked: false,
+											monClicked: false,
+											tuesClicked: false,
+											wedClicked: true,
+											thurClicked: false,
+											friClicked: false,
+											satClicked: false
+										})
+							}} className="btn btn-info">Add calories for wednesday</button>
+						</div>
+						<div className="row btn_row">
+							<button onClick={this.renderThursday, () => {
+										this.setState({
+											sunClicked: false,
+											monClicked: false,
+											tuesClicked: false,
+											wedClicked: false,
+											thurClicked: true,
+											friClicked: false,
+											satClicked: false
+										})
+							}} className="btn btn-warning">Add calories for thrusday</button>
+						</div>
+						<div className="row btn_row">
+							<button onClick={this.renderFriday, () => {
+										this.setState({
+											sunClicked: false,
+											monClicked: false,
+											tuesClicked: false,
+											wedClicked: false,
+											thurClicked: false,
+											friClicked: true,
+											satClicked: false
+										})
+							}} className="btn btn-success">Add calories for friday</button>
+						</div>
+						<div className="row btn_row">
+							<button onClick={this.renderSaturday, () => {
+										this.setState({
+											sunClicked: false,
+											monClicked: false,
+											tuesClicked: false,
+											wedClicked: false,
+											thurClicked: false,
+											friClicked: false,
+											satClicked: true
+										})
+							}} className="btn btn-danger">Add calories for saturday</button>
+						</div>
+						</div>
+						{sunClicked ? this.renderSunday() : null}
+						{monClicked ? this.renderMonday() : null}
+						{tuesClicked ? this.renderTuesday() : null}
+						{wedClicked ? this.renderWednesday() : null}
+						{thurClicked ? this.renderThursday() : null}
+						{friClicked ? this.renderFriday() : null}
+						{satClicked ? this.renderSaturday() : null}
+	{/*				    <div className="col-md-9">
+							<div className="form_main">
+					                <h4 className="heading"><strong>Register calories for </strong> Sunday <span></span></h4>
+					                <div className="form">
+					                <form onSubmit={this.handleSubmit} id="contactFrm" name="contactFrm">
+					                    <input type="text" required="" placeholder="Please input your Name" value="" name="name" className="txt"/>
+					                    <input type="text" required="" placeholder="Please input your mobile No" value="" name="mob" className="txt"/>
+					                    <input type="text" required="" placeholder="Please input your Email" value="" name="email" className="txt"/>
+					                    
+					                	 <textarea placeholder="Your Message" name="mess" type="text" className="txt_3"></textarea>
+					                     <input type="submit" value="submit" name="submit" className="txt2"/>
+					                </form>
+					            </div>
+					            </div>
+					        </div>*/}
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 		);
 	}
 }

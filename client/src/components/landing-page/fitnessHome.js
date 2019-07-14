@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import "./landing.css";
 import { Link } from "react-router-dom";
-
+import { Jumbotron, Button } from 'reactstrap';
 
 class HomeExercise extends Component {
 constructor () {
@@ -29,7 +29,23 @@ constructor () {
       rows: 1
     };
     return (
-   <div>
+  <div>
+   <div className="mobile">
+   	<div>
+      <Jumbotron className="jumb">
+      <div className="overlay">
+              <h1 className="display-4">Welcome to <span className="span_darkred">"The Fitness Channel"!</span></h1>
+              <p className="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+              <hr className="my-4" />
+              <p className="lead">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+              <p className="lead">
+                <Link className="btn btn-primary btn-lg" to="/tracking/diet" role="button">VISIT OUR DIET TRACKING APP</Link>
+              </p>
+        </div>
+      </Jumbotron>
+    </div>
+   </div>
+   <div className="desk">
       <div>
         <Slider {...settings}>
           <div className="slide">
@@ -129,6 +145,7 @@ constructor () {
 
 
      </div>
+    </div>
     );
   }
 }
