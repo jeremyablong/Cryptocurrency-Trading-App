@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "../homepage.css";
-import { registerUser, loginUser } from "../../../actions/index.js";
+import { registerUser, loginUser, auth } from "../../../actions/index.js";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -89,7 +89,23 @@ constructor () {
 			email: this.state.loginEmail,
 			password: this.state.loginPassword
 		});
-		this.props.history.push("/login");
+        const config = { 
+            email: this.state.loginEmail,
+            password: this.state.loginPassword
+        }
+
+        this.props.auth(config);
+        axios.post("/auth/login", config).then((res) => {
+            if (res.data.user === "Email found, account verified..") {
+                this.props.history.push("/homepage");
+                console.log("EMAIL FOUND.");
+            } else {
+                console.log("EMAIL NOT FOUND.")
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+		
 		console.log("Login clicked.")
 	};
 	render() {
@@ -99,7 +115,7 @@ constructor () {
                     <div className="col-md-3 register-left">
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
                         <h3>Welcome</h3>
-                        <p>You are 30 seconds away from accessing the internets top crypto and forex data!</p>
+                        <p>You are 30 seconds away from accessing the internets top fitness and health tracking app!</p>
                         
                     </div>
                     <div className="col-md-9 register-right">
@@ -113,7 +129,7 @@ constructor () {
                         </ul>
                         <div className="tab-content" id="myTabContent">
                             <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 className="register-heading">Register Today To Gain Access To Crypto Currency Statistics</h3>
+                                <h3 className="register-heading">Register Today To Gain Full Access To All Health Features And Tracking Capabilities!</h3>
                                 <form action="/" method="POST" onSubmit={this.handleRegisterSubmit}  className="row register-form">
                                     <div className="col-md-6">
                                         <div className="form-group">
@@ -224,4 +240,4 @@ constructor () {
 	}
 }
 
-export default withRouter(connect(null, { registerUser, loginUser })(LandingPage));
+export default withRouter(connect(null, { registerUser, loginUser, auth })(LandingPage));

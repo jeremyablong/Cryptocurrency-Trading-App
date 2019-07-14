@@ -16,6 +16,9 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { loginUser } from "../../actions/index.js";
 import store from "../../store/store.js";
+import  { Link } from "react-router-dom";
+import "./universal.css";
+
 
 class Navigation extends Component {
   constructor(props) {
@@ -52,7 +55,7 @@ class Navigation extends Component {
   };
   authorize = ()=> {
     console.log(store.getState().authorize.data);
-    if (this.props.reg === "Email found, account verified..") {
+    if (store.getState().authorize.data === "Email found, account verified..") {
       return (
         <button onClick={this.logout} style={{ marginRight: "20px" }} className="btn btn-danger" href="/">LOGOUT</button>
       );
@@ -66,15 +69,17 @@ class Navigation extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <Link to="/">
+          <h4 id="brand">The Fitness Channel</h4>
+        </Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/">Components</NavLink>
+                <NavLink>Components</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">GitHub</NavLink>
+                <NavLink>GitHub</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
@@ -97,7 +102,9 @@ class Navigation extends Component {
                 {this.authorize()}
               </NavItem>
               <NavItem>
-                <button onClick={this.redirectRegistration} className="btn btn-success" href="/">REGISTER</button>
+              <Link to="/">
+                <button onClick={this.redirectRegistration} className="btn btn-success register_btn">REGISTER</button>
+              </Link>
               </NavItem>
             </Nav>
           </Collapse>

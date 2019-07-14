@@ -10,7 +10,6 @@ export const registerUser = (item) => async dispatch => {
 // Login user
 export const loginUser = (data) => async dispatch => {
 	axios.post("/auth/login", data).then((res) => {
-		console.log(res.data.user);
 		dispatch({
 			type: "LOGIN", email: res.data.user
 		})
@@ -20,7 +19,6 @@ export const loginUser = (data) => async dispatch => {
 }
 export const auth = (data) => async dispatch => {
 	axios.post("/auth/login", data).then((res) => {
-		console.log(res);
 		dispatch({
 			type: "AUTH", email: res.data.user
 		})

@@ -1,0 +1,9 @@
+@media only screen and (max-width: 700px) {
+	.register_btn {
+		margin-top: 14px;
+	}
+}
+#brand {
+	color: darkred !important;
+	font-weight: bold;
+}

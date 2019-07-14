@@ -4,6 +4,7 @@ import { loginUser, auth } from "../../actions/index.js";
 import { connect } from "react-redux";
 import axios from "axios";
 import { withRouter } from "react-router";
+import  { Link } from "react-router-dom";
 
 class Login extends Component {
 constructor (props) {
@@ -27,7 +28,16 @@ constructor (props) {
 
 		this.props.auth(config);
 
-		this.props.history.push("/homepage");
+		axios.post("/auth/login", config).then((res) => {
+			if (res.data.user === "Email found, account verified..") {
+				this.props.history.push("/homepage");
+				console.log("EMAIL FOUND.");
+			} else {
+				console.log("EMAIL NOT FOUND.")
+			}
+		}).catch((err) => {
+			console.log(err);
+		})
 
 		console.log("Login clicked.");
 	};
@@ -77,9 +87,9 @@ constructor (props) {
 							</form>
 						</div>
 						<div className="card-footer">
-							<div className="d-flex justify-content-center links">
+							<Link to="/" className="d-flex justify-content-center links">
 								Don't have an account?<a href="#">Sign Up</a>
-							</div>
+							</Link>
 							<div className="d-flex justify-content-center">
 								<a href="#">Forgot your password?</a>
 							</div>
