@@ -85,9 +85,10 @@ class Navigation extends Component {
               <Link to="/profile/register">
                 <NavLink>Create A Profile</NavLink>
               </Link>
-              <NavItem>
-                <NavLink>GitHub</NavLink>
-              </NavItem>
+              {store.getState().authorize.data === "Email found, account verified.." ? <Link to="/tracking/diet">
+                <NavLink>Chart Your Calories</NavLink>
+              </Link> : null}
+             
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options

@@ -48,7 +48,7 @@ constructor (props) {
 				<div className="d-flex justify-content-center h-100">
 					<div className="card">
 						<div className="card-header">
-							<h3>Sign In</h3>
+							<h3 style={{ paddingTop: "30px"}}>Sign In</h3>
 							<div className="d-flex justify-content-end social_icon">
 								<span><i className="fab fa-facebook-square"></i></span>
 								<span><i className="fab fa-google-plus-square"></i></span>

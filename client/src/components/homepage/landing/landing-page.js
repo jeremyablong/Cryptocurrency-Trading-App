@@ -204,7 +204,7 @@ constructor () {
                                 </form>
                             </div>
                             <div className="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <h3  className="register-heading">Login to access your crypto account!</h3>
+                                <h3  className="register-heading">Login to access your health tracking account!</h3>
                                 <form onSubmit={this.handleLoginSubmit} className="row register-form">
                                     <div className="col-md-6">
                                         <div className="form-group">

@@ -2,7 +2,9 @@
 .btn_row {
     margin: 10px 0px 10px 20px;
 }
-
+.txt2 {
+    width: 100% !important;
+}
 .form_main {
     width: 100%;
 }

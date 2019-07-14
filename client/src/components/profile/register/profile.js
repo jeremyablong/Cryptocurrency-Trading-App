@@ -52,7 +52,7 @@ constructor () {
 			<div className="profile_container">
 				<div class="container">
 		            <form class="form-horizontal" role="form">
-		                <h2>Registration</h2>
+		                <h2>Register</h2>
 		                <div class="form-group">
 		                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
 		                    <div class="col-sm-9">
@@ -140,9 +140,9 @@ constructor () {
 				<div className="background_two">
 					<div className="container signup_container">
 						<div className="d-flex justify-content-center h-100">
-							<div className="card">
+							<div className="card card_overhaul">
 								<div className="card-header">
-									<h3>Sign In To Create A Profile</h3>
+									<h3 style={{ paddingTop: "30px"}}>Sign In To Create A Profile</h3>
 									<div className="d-flex justify-content-end social_icon">
 										<span><i className="fab fa-facebook-square"></i></span>
 										<span><i className="fab fa-google-plus-square"></i></span>
