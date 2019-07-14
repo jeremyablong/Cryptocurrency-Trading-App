@@ -21,7 +21,7 @@ constructor () {
 		e.preventDefault();
 
 		const config = { 
-			email: this.state.loginEmail,
+			email: this.state.loginEmail.toLowerCase(),
 			password: this.state.loginPassword
 		}
 

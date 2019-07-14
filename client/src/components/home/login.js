@@ -20,7 +20,7 @@ constructor (props) {
 		e.preventDefault();
 
 		const config = { 
-			email: this.state.loginEmail,
+			email: this.state.loginEmail.toLowerCase(),
 			password: this.state.loginPassword
 		}
 
@@ -63,7 +63,7 @@ constructor (props) {
 									</div>
 									<input onChange={(e) => {
 										this.setState({
-											loginEmail: e.target.value
+											loginEmail: e.target.value.toLowerCase()
 										})
 									}} type="text" className="form-control" placeholder="email" />
 									

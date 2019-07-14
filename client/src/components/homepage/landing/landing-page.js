@@ -40,8 +40,8 @@ constructor () {
 	handleRegisterSubmit = (e) => {
 		e.preventDefault();
 		
-		const { firstName, lastName, password, email, number, secret } = this.state;
-
+		const { firstName, lastName, password, number, secret } = this.state;
+        const email = this.state.email.toLowerCase()
 		axios.post("/api/profile", {
 			firstName,
 			lastName,
@@ -86,11 +86,11 @@ constructor () {
 	handleLoginSubmit = (e) => {
 		e.preventDefault();
 		this.props.loginUser({ 
-			email: this.state.loginEmail,
+			email: this.state.loginEmail.toLowerCase(),
 			password: this.state.loginPassword
 		});
         const config = { 
-            email: this.state.loginEmail,
+            email: this.state.loginEmail.toLowerCase(),
             password: this.state.loginPassword
         }
 
