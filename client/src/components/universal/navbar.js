@@ -75,9 +75,9 @@ class Navigation extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink>Components</NavLink>
-              </NavItem>
+              <Link to="/profile/register">
+                <NavLink>Create A Profile</NavLink>
+              </Link>
               <NavItem>
                 <NavLink>GitHub</NavLink>
               </NavItem>
