@@ -56,7 +56,7 @@ constructor () {
               <hr className="my-4" />
               <p className="lead">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
               <p className="lead">
-                <Link className="btn btn-primary btn-lg" to="/contact" role="button">Let's build an app!</Link>
+                <Link className="btn btn-primary btn-lg" to="/tracking/diet" role="button">VISIT OUR DIET TRACKING APP</Link>
               </p>
               </div>
               </div>
@@ -71,7 +71,7 @@ constructor () {
               <hr className="my-4" />
               <p className="lead">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
               <p className="lead">
-                <Link className="btn btn-primary btn-lg" to="/contact" role="button">Let's build an app!</Link>
+                <Link className="btn btn-primary btn-lg" to="/tracking/diet" role="button">VISIT OUR DIET TRACKING APP</Link>
               </p>
               </div>
               </div>
