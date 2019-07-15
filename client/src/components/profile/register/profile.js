@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import store from "../../../store/store.js";
 
+
 class Profile extends Component {
 constructor () {
 	super();
@@ -40,8 +41,10 @@ constructor () {
 			console.log(err);
 		})
 		console.log(store.getState().authorize.data);
-
 		setTimeout(() => {
+			if (store.getState().authorize.data === "Email NOT found, account couldn't be authenticated." || store.getState().authorize.data === "EMAIL NOT FOUND.") {
+                alert("Please enter valid credentials.")
+            }
 			this.forceUpdate();
 		}, 300);
 	};
@@ -50,87 +53,87 @@ constructor () {
 		if (store.getState().authorize.data === "Email found, account verified..") {
 		return (
 			<div className="profile_container">
-				<div class="container">
-		            <form class="form-horizontal" role="form">
+				<div className="container">
+		            <form className="form-horizontal" role="form">
 		                <h2>Register</h2>
-		                <div class="form-group">
-		                    <label for="firstName" class="col-sm-3 control-label">First Name</label>
-		                    <div class="col-sm-9">
-		                        <input type="text" id="firstName" placeholder="First Name" class="form-control" autofocus/>
+		                <div className="form-group">
+		                    <label htmlFor="firstName" className="col-sm-3 control-label">First Name</label>
+		                    <div className="col-sm-9">
+		                        <input type="text" id="firstName" placeholder="First Name" className="form-control" autoFocus/>
 		                    </div>
 		                </div>
-		                <div class="form-group">
-		                    <label for="lastName" class="col-sm-3 control-label">Last Name</label>
-		                    <div class="col-sm-9">
-		                        <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus/>
+		                <div className="form-group">
+		                    <label htmlFor="lastName" className="col-sm-3 control-label">Last Name</label>
+		                    <div className="col-sm-9">
+		                        <input type="text" id="lastName" placeholder="Last Name" className="form-control" autoFocus/>
 		                    </div>
 		                </div>
-		                <div class="form-group">
-		                    <label for="email" class="col-sm-3 control-label">Email* </label>
-		                    <div class="col-sm-9">
-		                        <input type="email" id="email" placeholder="Email" class="form-control" name= "email"/>
+		                <div className="form-group">
+		                    <label htmlFor="email" className="col-sm-3 control-label">Email* </label>
+		                    <div className="col-sm-9">
+		                        <input type="email" id="email" placeholder="Email" className="form-control" name= "email"/>
 		                    </div>
 		                </div>
-		                <div class="form-group">
-		                    <label for="password" class="col-sm-3 control-label">Password*</label>
-		                    <div class="col-sm-9">
-		                        <input type="password" id="password" placeholder="Password" class="form-control"/>
+		                <div className="form-group">
+		                    <label htmlFor="password" className="col-sm-3 control-label">Password*</label>
+		                    <div className="col-sm-9">
+		                        <input type="password" id="password" placeholder="Password" className="form-control"/>
 		                    </div>
 		                </div>
-		                <div class="form-group">
-		                    <label for="password" class="col-sm-3 control-label">Confirm Password*</label>
-		                    <div class="col-sm-9">
-		                        <input type="password" id="password" placeholder="Password" class="form-control"/>
+		                <div className="form-group">
+		                    <label htmlFor="password" className="col-sm-3 control-label">Confirm Password*</label>
+		                    <div className="col-sm-9">
+		                        <input type="password" id="password" placeholder="Password" className="form-control"/>
 		                    </div>
 		                </div>
-		                <div class="form-group">
-		                    <label for="birthDate" class="col-sm-3 control-label">Date of Birth*</label>
-		                    <div class="col-sm-9">
-		                        <input type="date" id="birthDate" class="form-control"/>
+		                <div className="form-group">
+		                    <label htmlFor="birthDate" className="col-sm-3 control-label">Date of Birth*</label>
+		                    <div className="col-sm-9">
+		                        <input type="date" id="birthDate" className="form-control"/>
 		                    </div>
 		                </div>
-		                <div class="form-group">
-		                    <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
-		                    <div class="col-sm-9">
-		                        <input type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control"/>
-		                        <span class="help-block">Your phone number won't be disclosed anywhere </span>
+		                <div className="form-group">
+		                    <label htmlFor="phoneNumber" className="col-sm-3 control-label">Phone number </label>
+		                    <div className="col-sm-9">
+		                        <input type="phoneNumber" id="phoneNumber" placeholder="Phone number" className="form-control"/>
+		                        <span className="help-block">Your phone number won't be disclosed anywhere </span>
 		                    </div>
 		                </div>
-		                <div class="form-group">
-		                        <label for="Height" class="col-sm-3 control-label">Height* </label>
-		                    <div class="col-sm-9">
-		                        <input type="number" id="height" placeholder="Please write your height in centimetres" class="form-control"/>
+		                <div className="form-group">
+		                        <label htmlFor="Height" className="col-sm-3 control-label">Height* </label>
+		                    <div className="col-sm-9">
+		                        <input type="number" id="height" placeholder="Please write your height in centimetres" className="form-control"/>
 		                    </div>
 		                </div>
-		                 <div class="form-group">
-		                        <label for="weight" class="col-sm-3 control-label">Weight* </label>
-		                    <div class="col-sm-9">
-		                        <input type="number" id="weight" placeholder="Please write your weight in kilograms" class="form-control"/>
+		                 <div className="form-group">
+		                        <label htmlFor="weight" className="col-sm-3 control-label">Weight* </label>
+		                    <div className="col-sm-9">
+		                        <input type="number" id="weight" placeholder="Please write your weight in kilograms" className="form-control"/>
 		                    </div>
 		                </div>
-		                <div class="form-group">
-		                    <label class="control-label col-sm-3">Gender</label>
-		                    <div class="col-sm-6">
-		                        <div class="row">
-		                            <div class="col-sm-4">
-		                                <label class="radio-inline">
+		                <div className="form-group">
+		                    <label className="control-label col-sm-3">Gender</label>
+		                    <div className="col-sm-6">
+		                        <div className="row">
+		                            <div className="col-sm-4">
+		                                <label className="radio-inline">
 		                                    <input type="radio" id="femaleRadio" value="Female"/>Female
 		                                </label>
 		                            </div>
-		                            <div class="col-sm-4">
-		                                <label class="radio-inline">
+		                            <div className="col-sm-4">
+		                                <label className="radio-inline">
 		                                    <input type="radio" id="maleRadio" value="Male"/>Male
 		                                </label>
 		                            </div>
 		                        </div>
 		                    </div>
 		                </div> 
-		                <div class="form-group">
-		                    <div class="col-sm-9 col-sm-offset-3">
-		                        <span class="help-block">*Required fields</span>
+		                <div className="form-group">
+		                    <div className="col-sm-9 col-sm-offset-3">
+		                        <span className="help-block">*Required fields</span>
 		                    </div>
 		                </div>
-		                <button type="submit" class="btn btn-primary btn-block">Register</button>
+		                <button type="submit" className="btn btn-primary btn-block">Register</button>
 		            	</form> 
 		        	</div> 
 				</div>

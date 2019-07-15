@@ -7,3 +7,9 @@
 	color: darkred !important;
 	font-weight: bold;
 }
+.nav_item {
+	padding: 15px;
+    display: inline-block;
+    line-height: 20px;
+    color: black !important;
+}

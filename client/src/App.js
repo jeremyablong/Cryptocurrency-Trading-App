@@ -11,11 +11,11 @@ render () {
     return (
    	<BrowserRouter>
       <div className="App">
-		<Route exact path="/" component={HomepageMain} />
-		<Route exact path="/login" component={Homepage} />
-		<Route exact path="/homepage" component={LandingPage} />
-		<Route exact path="/tracking/diet" component={DietTracking} />
-		<Route exact path="/profile/register" component={ProfileRegister} />
+    		<Route exact path="/" component={HomepageMain} />
+    		<Route exact path="/login" component={Homepage} />
+    		<Route exact path="/homepage" component={LandingPage} />
+    		<Route exact path="/tracking/diet" component={DietTracking} />
+    		<Route exact path="/profile/register" component={ProfileRegister} />
       </div>
     </BrowserRouter>
     );

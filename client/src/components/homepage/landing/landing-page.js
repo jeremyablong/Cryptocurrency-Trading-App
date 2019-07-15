@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
+import store from "../../../store/store.js";
 
 class LandingPage extends Component {
 constructor () {
@@ -105,7 +106,11 @@ constructor () {
         }).catch((err) => {
             console.log(err);
         })
-		
+		setTimeout(() => {
+            if (store.getState().authorize.data === "Email NOT found, account couldn't be authenticated." || store.getState().authorize.data === "EMAIL NOT FOUND.") {
+                alert("Please enter valid credentials.")
+            }
+        }, 300)
 		console.log("Login clicked.")
 	};
 	render() {
@@ -226,6 +231,7 @@ constructor () {
                                             <h6 onClick={this.togglePassword}> <i className="fas fa-eye"></i> Show Password </h6>
                                         </div>
                                     </div>
+                                   
                                     <div className="col-md-6">
 										<button className="btn btn-outline-info">SIGN-IN</button>
                                     </div>

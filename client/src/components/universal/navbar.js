@@ -82,15 +82,15 @@ class Navigation extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <Link to="/profile/register">
-                <NavLink>Create A Profile</NavLink>
-              </Link>
-              {store.getState().authorize.data === "Email found, account verified.." ? <Link to="/tracking/diet">
-                <NavLink>Chart Your Calories</NavLink>
-              </Link> : null}
+              <NavItem>
+                <Link className="nav_item" to="/profile/register">Track Your Diet</Link>
+              </NavItem>
+              {store.getState().authorize.data === "Email found, account verified.." ? <NavItem className="nav_item">
+                <Link to="/tracking/diet">Chart Your Calories</Link>
+              </NavItem> : null}
              
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
+                <DropdownToggle  className="nav_item" nav caret>
                   Options
                 </DropdownToggle>
                 <DropdownMenu right>

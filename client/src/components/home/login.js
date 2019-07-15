@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { withRouter } from "react-router";
 import  { Link } from "react-router-dom";
+import store from "../../store/store.js";
 
 class Login extends Component {
 constructor (props) {
@@ -38,7 +39,11 @@ constructor (props) {
 		}).catch((err) => {
 			console.log(err);
 		})
-
+		setTimeout(() => {
+            if (store.getState().authorize.data === "Email NOT found, account couldn't be authenticated." || store.getState().authorize.data === "EMAIL NOT FOUND.") {
+                alert("Please enter valid credentials.")
+            }
+        }, 300)
 		console.log("Login clicked.");
 	};
 	render() {
