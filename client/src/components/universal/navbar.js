@@ -86,7 +86,7 @@ class Navigation extends Component {
                 <Link className="nav_item" to="/profile/register">Track Your Diet</Link>
               </NavItem>
               {store.getState().authorize.data === "Email found, account verified.." ? <NavItem className="nav_item">
-                <Link to="/tracking/diet">Chart Your Calories</Link>
+                <Link className="nav_item" to="/tracking/diet">Chart Your Calories</Link>
               </NavItem> : null}
              
               <UncontrolledDropdown nav inNavbar>
