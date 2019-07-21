@@ -1,5 +1,5 @@
 {
-  "name": "vidjot",
+  "name": "crypto",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jeremyablong/vidjot-fullstack.git"
+    "url": ""
   },
   "author": "Jeremy Blong",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jeremyablong/vidjot-fullstack/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/jeremyablong/vidjot-fullstack#readme",
+  "homepage": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",

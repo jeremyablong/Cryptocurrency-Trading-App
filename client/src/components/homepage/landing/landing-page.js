@@ -22,7 +22,9 @@ constructor () {
 		loginEmail: "",
 		loginPassword: "",
 		emails: [],
-		show: false
+		show: false,
+        sent: false,
+        registered: false
 	}
 }
 
@@ -55,34 +57,37 @@ constructor () {
 			console.log(res);
 		}).catch((err) => {
 			console.log(err);
-		})
-
+		});
 
 		if (firstName && lastName && password && email && number && secret) {
-			console.log("Register Clicked / Submitted.");
-			this.props.history.push("/login");
-			this.props.registerUser(this.state);
-		} else {
+            console.log("Register Clicked / Submitted.");
+            this.props.registerUser(this.state);
+            this.setState({
+                registered: true
+            })
+                    } else {
 			alert("Please complete all of the form fields.")
 		}
-
+        // redirect if successful signup
 		return this.state.emails.forEach((item) => {
 			if (email === item.email) {
 				this.setState({
 					show: true,
-				})
-				console.log(this.props)
+                    firstName: "",
+                    lastName: "",
+                    password: "",
+                    email: "",
+                    number: "",
+                    secret: "",
+                    loginPassword: ""
+				});
 			}
-		})
-
-		console.log(this.props)
-		
-
+		});
 	};
 	togglePassword = () => {
 		this.setState({
 			hidden: !this.state.hidden
-		})
+		});
 	};
 	handleLoginSubmit = (e) => {
 		e.preventDefault();
@@ -136,27 +141,28 @@ constructor () {
                             <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <h3 className="register-heading">Register Today To Gain Full Access To All Health Features And Tracking Capabilities!</h3>
                                 <form action="/" method="POST" onSubmit={this.handleRegisterSubmit}  className="row register-form">
+
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <input onChange={(e) => {
                                             	this.setState({
                                             		firstName: e.target.value
                                             	})
-                                            }} type="text" className="form-control" placeholder="First Name *" value={this.state.firstName} />
+                                            }} type="text" className="form-control" placeholder="First Name *" value={this.state.registered ? "You're registered" : this.state.firstName} />
                                         </div>
                                         <div className="form-group">
                                             <input onChange={(e) => {
                                             	this.setState({
                                             		lastName: e.target.value
                                             	})
-                                            }} type="text" className="form-control" placeholder="Last Name *" value={this.state.lastName} />
+                                            }} type="text" className="form-control" placeholder="Last Name *" value={this.state.registered ? "You're registered" : this.state.lastName} />
                                         </div>
                                         <div className="form-group">
                                             <input onChange={(e) => {
                                             	this.setState({
                                             		password: e.target.value
                                             	})
-                                            }} type={this.state.hidden ? "password" : "text"} className="form-control" placeholder="Password *" value={this.state.initPassword} />
+                                            }} type={this.state.hidden ? "password" : "text"} className="form-control" placeholder="Password *" value={this.state.registered ? "You're registered" : this.state.password} />
                                         </div>
                                         <h6 onClick={this.togglePassword}> <i className="fas fa-eye"></i> Show Password </h6>
            {/*                             <div className="form-group">
@@ -174,20 +180,20 @@ constructor () {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                        <h6 className="text_red">{this.state.show ? "This email already exists, please login..." : null}</h6>
+                                        
                                             <input onChange={(e) => {
                                             	this.setState({
                                             		email: e.target.value,
                                             		show: false
                                             	})
-                                            }} type="email" className="form-control" placeholder="Your Email *" value={this.state.email} />
+                                            }} type="email" className="form-control" placeholder="Your Email *" value={this.state.registered ? "You're registered" : this.state.email} />
                                         </div>
                                         <div className="form-group">
                                             <input onChange={(e) => {
                                             	this.setState({
                                             		number: e.target.value
                                             	})
-                                            }} type="text" minLength="10" maxLength="10" name="txtEmpPhone" className="form-control" placeholder="Your Phone *" value={this.state.number} />
+                                            }} type="text" minLength="10" maxLength="10" name="txtEmpPhone" className="form-control" placeholder="Your Phone *" value={this.state.registered ? "You're registered" : this.state.number} />
                                         </div>
                                        {/* <div className="form-group">
                                             <select className="form-control">
@@ -202,9 +208,13 @@ constructor () {
                                             	this.setState({
                                             		secret: e.target.value
                                             	})
-                                            }} type="text" className="form-control" placeholder="Select a secret phrase for account recovery *" value={this.state.secret} />
+                                            }} type="text" className="form-control" placeholder="Select a secret phrase for account recovery *" value={this.state.registered ? "You're registered" : this.state.secret} />
                                         </div>
+
                                         <input type="submit" className="btnRegister"  value="Register"/>
+                                <div className="row">
+                                    <h6 className="text_red">{this.state.show ? "This email already exists, please login..." : null}</h6>
+                                </div>
                                     </div>
                                 </form>
                             </div>
@@ -228,6 +238,7 @@ constructor () {
 												
                                             </input>
                                             <br />
+
                                             <h6 onClick={this.togglePassword}> <i className="fas fa-eye"></i> Show Password </h6>
                                         </div>
                                     </div>

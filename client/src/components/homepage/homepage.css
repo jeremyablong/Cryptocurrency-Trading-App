@@ -102,4 +102,6 @@
 }
 .text_red {
     color: red;
+    -webkit-animation: fade-in 1s linear 1001ms, fade-out 1s linear 3s;
+    -webkit-animation-fill-mode: forwards;
 }
