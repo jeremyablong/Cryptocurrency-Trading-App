@@ -106,4 +106,11 @@ constructor (props) {
 		);
 	}
 }
-export default withRouter(connect(null, { loginUser, auth })(Login));
+const mapStateToProps = () => {
+	return {
+		
+	}
+}
+
+
+export default withRouter(connect(mapStateToProps, { loginUser, auth })(Login));

@@ -30,10 +30,10 @@ mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 				console.log(err);
 			}
 			res.send(result);
-		})
+		});
 
-	})
+	});
 
-})
+});
 
 module.exports = router;

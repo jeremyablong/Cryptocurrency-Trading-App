@@ -1,0 +1,18 @@
+.create_post {
+    margin-top: 100px;
+    padding: 30px;
+    border: 2px solid black;
+    box-shadow: 5px 15px 15px black;
+}
+@media only screen and (max-width: 700px) {
+    .create_post {
+        margin-top: 0px;
+        padding: 10px;
+        border: 2px solid black;
+        box-shadow: 15px 15px 15px grey;
+    }
+}
+.underline {
+    text-decoration: underline;
+    text-decoration-color: darkred;
+}

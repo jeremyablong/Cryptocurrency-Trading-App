@@ -83,10 +83,10 @@ class Navigation extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Link className="nav_item" to="/profile/register">Track Your Diet</Link>
+                <Link className="nav_item" to="/profile/register">Health Forums</Link>
               </NavItem>
               {store.getState().authorize.data === "Email found, account verified.." ? <NavItem className="nav_item">
-                <Link className="nav_item" to="/tracking/diet">Chart Your Calories</Link>
+                <Link className="turn_black" to="/tracking/diet">Chart Your Calories</Link>
               </NavItem> : null}
              
               <UncontrolledDropdown nav inNavbar>
@@ -122,10 +122,13 @@ class Navigation extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  if (state.authorize.data) {
-    return {
-      reg: state.authorize.data
-    }
+  // if (state.authorize.data) {
+  //   return {
+  //     reg: state.authorize.data
+  //   }
+  // }
+  return {
+    
   }
 }
 
