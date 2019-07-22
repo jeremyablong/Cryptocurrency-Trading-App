@@ -2,10 +2,18 @@ const express = require("express");
 const app = express();
 const connectDB = require("./config/db.js");
 const router = express.Router();
+const graphqlHTTP = require("express-graphql");
 // init middleware
 const bodyParser = require('body-parser');
+const graphqlSchema = require("./schemas/schema.js");
 // connect db
 connectDB();
+
+app.use("/graphql", graphqlHTTP({
+	schema: graphqlSchema,
+	graphiql: true
+}));
+
 app.use(bodyParser.json())
 // define routes 
 app.use("/api/users", require("./routes/api/users"));

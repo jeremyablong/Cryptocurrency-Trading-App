@@ -61,7 +61,6 @@ class Navigation extends Component {
     this.props.history.push("/");
   };
   authorize = ()=> {
-    console.log(store.getState().authorize.data);
     if (store.getState().authorize.data === "Email found, account verified..") {
       return (
         <button onClick={this.logout} style={{ marginRight: "20px" }} className="btn btn-danger" href="/">LOGOUT</button>
@@ -77,16 +76,16 @@ class Navigation extends Component {
       <div>
         <Navbar color="light" light expand="md">
         <Link to="/">
-          <h4 id="brand">The Fitness Channel</h4>
+          <h4 id="brand">Crypto Chaining</h4>
         </Link>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Link className="nav_item" to="/profile/register">Health Forums</Link>
+                <Link className="nav_item" to="/learnMore">Learn More </Link>
               </NavItem>
               {store.getState().authorize.data === "Email found, account verified.." ? <NavItem className="nav_item">
-                <Link className="turn_black" to="/tracking/diet">Chart Your Calories</Link>
+                <Link className="turn_black" to="/tracking/currencies">View Crypto Charts</Link>
               </NavItem> : null}
              
               <UncontrolledDropdown nav inNavbar>

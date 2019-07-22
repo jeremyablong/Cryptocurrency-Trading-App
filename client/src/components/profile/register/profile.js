@@ -5,7 +5,6 @@ import { loginUser, auth } from "../../../actions/index.js";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import store from "../../../store/store.js";
-import Forums from "../../forums/home/home.js";
 
 
 class Profile extends Component {
@@ -51,6 +50,11 @@ constructor () {
 	};
 
 	renderIfSignedIn = () => {	
+
+
+		//////////////// CHANGE THIS TO CONDITIONALLY RENDER BEFORE DEPLOYMENT /////////////////////
+
+
 		// if (store.getState().authorize.data === "Email found, account verified..") {
 		// return (
 		// 	<Forums />
@@ -61,7 +65,7 @@ constructor () {
 		// 	);
 		// }
 		return (
-			<Forums />
+			<h1 className="text-center"> insert content here </h1>
 		);
 	};
 	render() {
@@ -74,10 +78,5 @@ constructor () {
 		);
 	}
 }
-const mapStateToProps = () => {
-	return {
-		
-	}
-}
 
-export default connect(mapStateToProps,  { loginUser, auth })(Profile);
+export default connect(null,  { loginUser, auth })(Profile);

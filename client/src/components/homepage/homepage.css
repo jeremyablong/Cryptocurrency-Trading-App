@@ -1,11 +1,13 @@
 .register{
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    background-image: url("../../images/102.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     padding: 3%;
     height: 100vh;
 }
 @media only screen and (max-width: 700px) {
     .register{
-        background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+        background-image: url("../../images/102.jpg");
         padding: 3%;
         height: 100%;
     }
@@ -26,6 +28,9 @@
     margin-top: 30%;
     margin-bottom: 3%;
     cursor: pointer;
+    
+    /* top, transparent red, faked with gradient */ 
+
 }
 .register-right{
     background: #f8f9fa;

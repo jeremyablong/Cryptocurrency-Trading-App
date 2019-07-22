@@ -125,7 +125,7 @@ constructor () {
                     <div className="col-md-3 register-left">
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
                         <h3>Welcome</h3>
-                        <p>You are 30 seconds away from accessing the internets top fitness and health tracking app!</p>
+                        <p>You are 30 seconds away from accessing immediate guarenteed loans!</p>
                         
                     </div>
                     <div className="col-md-9 register-right">
@@ -139,7 +139,7 @@ constructor () {
                         </ul>
                         <div className="tab-content" id="myTabContent">
                             <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 className="register-heading">Register Today To Gain Full Access To All Health Features And Tracking Capabilities!</h3>
+                                <h3 className="register-heading">Start bidding on cryptocurrency and forex today! Don't miss out and signup today.</h3>
                                 <form action="/" method="POST" onSubmit={this.handleRegisterSubmit}  className="row register-form">
 
                                     <div className="col-md-6">

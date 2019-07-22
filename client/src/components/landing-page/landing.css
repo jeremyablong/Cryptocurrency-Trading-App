@@ -8,12 +8,16 @@
     display: none;
   }
 }
+.display-5 {
+  font-size: 3.0rem !important;
+  color: tan !important;
+}
 .jumb {
   padding-top: 0px !important;
   height: 100% !important;
   min-height: 100%;
   font-family: 'Oswald', sans-serif;
-  background-image: url("../../images/a1.jpg");
+  background-image: url("../../images/art.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -29,7 +33,7 @@
   padding-bottom: 100px;
 }
 .jumbo_one {
-  background-image: url("../../images/a1.jpg");
+  background-image: url("../../images/art.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -52,14 +56,14 @@
   border-radius: 25px;
 }
 .jumbo_two {
-  background-image: url("../../images/a2.jpg");
+  background-image: url("../../images/art.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
   min-height: 100vh;
 }
 .jumbo_three {
-  background-image: url("../../images/a3.jpg");
+  background-image: url("../../images/art.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }

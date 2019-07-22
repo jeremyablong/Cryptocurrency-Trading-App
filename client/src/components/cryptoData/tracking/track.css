@@ -1,0 +1,91 @@
+
+.btn_row {
+    margin: 10px 0px 10px 20px;
+}
+.txt2 {
+    width: 100% !important;
+}
+.form_main {
+    width: 100%;
+}
+.crypto_card {
+    box-shadow: 15px 15px 15px grey;
+    margin-top: 50px !important;
+}
+@media only screen and (max-width: 800px) {
+    .crypto_card {
+        margin-top: 450px !important;
+    }
+    #myChart {
+        margin-bottom: -400px;
+    }
+}
+.api_display {
+    margin-bottom: 400px;
+}
+.crypto_container {
+    box-shadow: 15px 15px 15px grey;
+}
+.card-img-top {
+    max-height: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    min-width: 100%;
+}
+.turn_red {
+    color: darkred;
+}
+.form_main h4 {
+    font-family: roboto;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+.heading {
+    border-bottom: 1px solid #fcab0e;
+    padding-bottom: 9px;
+    position: relative;
+}
+.heading span {
+    background: #9e6600 none repeat scroll 0 0;
+    bottom: -2px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 75px;
+}   
+.form {
+    border-radius: 7px;
+    padding: 6px;
+}
+.txt[type="text"] {
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    padding: 10px 0 10px 5px;
+    width: 100%;
+}
+.txt_3[type="text"] {
+    margin: 10px 0 0;
+    padding: 10px 0 10px 5px;
+    width: 100%;
+}
+.txt2[type="submit"] {
+    background: #242424 none repeat scroll 0 0;
+    border: 1px solid #4f5c04;
+    border-radius: 25px;
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 35px;
+    margin: 10px 0;
+    padding: 0;
+    text-transform: uppercase;
+    width: 30%;
+}
+.txt2:hover {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    color: #5793ef;
+    transition: all 0.5s ease 0s;
+}

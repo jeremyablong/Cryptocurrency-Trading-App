@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Navigation from "../universal/navbar.js";
-import HomeExercise from "./fitnessHome.js";
+import Slide from "./slider.js";
 
 class LandingPage extends Component {
 	render() {
 		return (
 			<div>
 				<Navigation />
-				<HomeExercise />
+				<Slide />
 			</div>
 		);
 	}
