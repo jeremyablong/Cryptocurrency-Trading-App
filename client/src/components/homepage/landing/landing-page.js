@@ -6,6 +6,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import store from "../../../store/store.js";
+import TableData from "../../api-results-display/table/table.js";
+
 
 class LandingPage extends Component {
 constructor () {
@@ -120,6 +122,8 @@ constructor () {
 	};
 	render() {
 		return (
+        <div>
+        <TableData />
             <div className="container-fluid register">
                 <div className="row">
                     <div className="col-md-3 register-left">
@@ -251,7 +255,7 @@ constructor () {
                         </div>
                     </div>
                 </div>
-
+                </div>
             </div>
 		);
 	}

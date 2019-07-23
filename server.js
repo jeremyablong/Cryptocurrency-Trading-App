@@ -6,10 +6,13 @@ const graphqlHTTP = require("express-graphql");
 // init middleware
 const bodyParser = require('body-parser');
 const graphqlSchema = require("./schemas/schema.js");
+const cors = require("cors");
 // connect db
 connectDB();
 
-app.use("/graphql", graphqlHTTP({
+app.use(cors());
+
+app.use("/graphql", cors(), graphqlHTTP({
 	schema: graphqlSchema,
 	graphiql: true
 }));

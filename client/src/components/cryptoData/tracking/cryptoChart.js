@@ -73,7 +73,7 @@ constructor () {
 						  	<p className="text-left"><span className="turn_red">All Time High</span> - {Math.round(item.high * 100) / 100}</p>
 						    <p className="text-left"><span className="turn_red">Date of occurance</span> - {item.high_timestamp}</p>
 						    <p className="text-left"><span className="turn_red">Circulating Supply</span> - {item.circulating_supply} coins</p>
-						    <a onClick={this.conditionallyRenderCoinInfo} href="/" className="btn btn-primary">View More Details</a>
+						    <a onClick={this.conditionallyRenderCoinInfo} href="/tracking/table" className="btn btn-primary">View More Details</a>
 						  </div>
 					</div>
 				</div>
