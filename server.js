@@ -5,12 +5,17 @@ const router = express.Router();
 const graphqlHTTP = require("express-graphql");
 // init middleware
 const bodyParser = require('body-parser');
+const graphqlSchemaIntervals = require("./schemas/cryptoIntervalTimes.js");
 const graphqlSchema = require("./schemas/schema.js");
 const cors = require("cors");
+
 // connect db
 connectDB();
-
+// graphqlSchemaIntervals
 app.use(cors());
+
+
+
 
 app.use("/graphql", cors(), graphqlHTTP({
 	schema: graphqlSchema,

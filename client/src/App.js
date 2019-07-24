@@ -10,12 +10,20 @@ import Footer from "./components/universal/footer.js";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import TableData from "./components/api-results-display/table/table.js";
+import axios from "axios";
 
 const client = new ApolloClient({
   uri: "http://localhost:5000/graphql"
 })
 
 class App extends Component {
+// componentDidMount () {
+//   axios.get("https://api.nomics.com/v1/candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=1d&currency=BTC").then((res) => {
+//     console.log(res.data);
+//   }).catch((err) => {
+//     console.log(err)
+//   })
+// }
 render () {
     return (
       <ApolloProvider client={client}>

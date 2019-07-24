@@ -80,9 +80,9 @@ constructor () {
 	render() {
 		return (
 			<React.Fragment>
-				<div style={{ marginBottom: "25px" }} className="container">
+				<div style={{ marginBottom: "25px" }} className="container-fluid black_container">
 					<h1 className="text-center adjust_size">Search for any cryptocurrency on the market! We have them all.</h1>
-					
+					<h1 className="text-center adjust_size_two">Swipe to view all the stats of each cryptocurrency or search</h1>
 					{/*<form onSubmit={this.submitInput}>
 						<div className="input-group">
 						  <input onChange={(e) => {
@@ -100,8 +100,15 @@ constructor () {
 			<Query query={CRYPTO_QUERY}>
 					{
 					({ loading, error, data }) => {	
-					console.log([data])	
-				return ( <ReactTable
+						
+				 if (loading) {
+				 	return <h1 className="text-center"> Loading... </h1>
+				 }
+				 if (error) {
+				 	console.log(error);
+				 }
+				 if (data) {
+				 	return ( <ReactTable
 			          data={data.data}
 			          filterable
 			          sortable={false}
@@ -112,6 +119,7 @@ constructor () {
 		                  Header: "Crypto Logo",
 		                  accessor: "Crypto Logo",
 		                  id: "logo",
+		                  filterable: false,
 		                  accessor: d => !d.logo_url ? null : <img id="picture" src={d.logo_url} />
 		                },
 			          	{
@@ -130,27 +138,32 @@ constructor () {
 		                   
 		                },
 		                {
-			                  Header: "Currency - Name",
-			                  id: "CurrencyAndName",
-			                  accessor: d => `${d.currency} - ${d.name}`,
-			                  filterMethod: (filter, rows) =>
-			                    matchSorter(rows, filter.value, { keys: ["CurrencyAndName"] }),
-			                  filterAll: true
-			                },
+		                  Header: "Currency - Name",
+		                  id: "CurrencyAndName",
+		                  accessor: d => `${d.currency} - ${d.name}`,
+		                  filterMethod: (filter, rows) =>
+		                    matchSorter(rows, filter.value, { keys: ["CurrencyAndName"] }),
+		                  filterAll: true
+		                }, 
 		                {
 		                  Header: "Current Price",
 		                  accessor: "Current Price",
 		                  id: "CurrentPrice",
-		                  accessor: d => Math.round(d.price * 100) / 100,
-		                  filterMethod: (filter, row) =>
-		                    row[filter.id].startsWith(filter.value) &&
-		                    row[filter.id].endsWith(filter.value)
-		                },
+		                  filterable: false,
+		                  accessor: d => {
+		                  	return (
+		                  		(Math.round(d.price * 100) / 100).toLocaleString()
+		                  	);
+		                  },
+		                  filterMethod: (filter, rows) =>
+		                  filter.value === rows.CurrentPrice ? rows.CurrentPrice : null
+		                }, 
 		                {
 		                  Header: "Market Cap Price",
 		                  accessor: "Market Cap Price",
 		                  id: "MarketCap",
-		                  accessor: d => d.market_cap,
+		                  filterable: false,
+		                  accessor: d => (Math.round(d.market_cap * 100) / 100).toLocaleString(),
 		                  filterMethod: (filter, row) =>
 		                    row[filter.id].startsWith(filter.value) &&
 		                    row[filter.id].endsWith(filter.value)
@@ -159,6 +172,7 @@ constructor () {
 		                  Header: "Market Cap Date",
 		                  accessor: "Market Cap Date",
 		                  id: "MarketCapDate",
+		                  filterable: false,
 		                  accessor: d => d.high_timestamp,
 		                  filterMethod: (filter, row) =>
 		                    row[filter.id].startsWith(filter.value) &&
@@ -172,7 +186,8 @@ constructor () {
 			                  Header: "Max Supply",
 			                  accessor: "Max Supply",
 			                  id: "MaxSupply",
-			                  accessor: d => !d.max_supply ? "No Data Provided" : d.max_supply,
+		                  	  filterable: false,
+			                  accessor: d => !d.max_supply ? "No Data Provided" : (Math.round(d.max_supply * 100) / 100).toLocaleString(),
 			                  filterMethod: (filter, row) =>
 			                    row[filter.id].startsWith(filter.value) &&
 			                    row[filter.id].endsWith(filter.value)
@@ -186,7 +201,8 @@ constructor () {
 			                  Header: "Circulating Supply",
 			                  accessor: "Circulating Supply",
 			                  id: "CirculatingSupply",
-			                  accessor: d => d.circulating_supply,
+		                      filterable: false,
+			                  accessor: d => (Math.round(d.circulating_supply * 100) / 100).toLocaleString(),
 			                  filterMethod: (filter, row) =>
 			                    row[filter.id].startsWith(filter.value) &&
 			                    row[filter.id].endsWith(filter.value)
@@ -198,6 +214,7 @@ constructor () {
 			          className="-striped -highlight"
 			        />
 		        );
+				 }
 		        }
 				}
 			</Query>

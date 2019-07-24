@@ -55,18 +55,15 @@ constructor () {
 		//////////////// CHANGE THIS TO CONDITIONALLY RENDER BEFORE DEPLOYMENT /////////////////////
 
 
-		// if (store.getState().authorize.data === "Email found, account verified..") {
-		// return (
-		// 	<Forums />
-		// );			
-		// } else {
-		// 	return (
-		// 	<Forums />
-		// 	);
-		// }
+		if (store.getState().authorize.data === "Email found, account verified..") {
 		return (
-			<h1 className="text-center"> insert content here </h1>
-		);
+			<h1> signed in</h1>
+		);			
+		} else {
+			return (
+				<h1> signed out</h1>
+			);
+		}
 	};
 	render() {
 		return (

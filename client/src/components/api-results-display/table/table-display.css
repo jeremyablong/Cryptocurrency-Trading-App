@@ -17,6 +17,25 @@
 		min-width: 100%;
 		padding-left: 20px;
 	}
+	.adjust_size {
+		display: none;
+	}
+
+}
+@media only screen and (min-width: 801px) {
+	.adjust_size_two {
+		display: none;
+	}
+}
+.adjust_size_two {
+	font-size: 26px;
+	color: white;
+	padding-top: 10px;
+}
+.black_container {
+	background: black;
+	padding-bottom: 14px;
+	margin-bottom: 0px !important;
 }
 .main {
 	color: darkred;
@@ -32,7 +51,9 @@
 	padding-bottom: 15px;
 }
 .adjust_size {
-	font-size: 2rem
+	font-size: 2rem;
+	color: white;
+	padding-top: 10px;
 }
 .turn_blue {
 	color: blue;
