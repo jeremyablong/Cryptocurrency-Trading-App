@@ -36,7 +36,7 @@ export const signOut = (data) => async dispatch => {
 	})
 }
 export const generateCryptoData = (data) => async dispatch => {
-	await axios.get("https://api.nomics.com/v1/currencies/ticker?key=561df32fa25fd3d93ae7064e0da5c8a2&ids=BTC,ETH,XRP&interval=1d, 7d, 30d", data).then((res) => {
+	await axios.get("https://api.nomics.com/v1/candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=1h&currency=BTC&start=2019-07-18T00:00:00Z&end=2019-07-24T00:00:00Z", data).then((res) => {
 		console.log(res.data)
 		dispatch({
 			type: "GENERATE_CRYPTO_DATA", payload: res.data
