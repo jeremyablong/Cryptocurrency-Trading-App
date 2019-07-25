@@ -5,6 +5,7 @@ import { loginUser, auth } from "../../../actions/index.js";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import store from "../../../store/store.js";
+import Login from "../../home/login.js";
 
 
 class Profile extends Component {
@@ -61,7 +62,7 @@ constructor () {
 		);			
 		} else {
 			return (
-				<h1> signed out</h1>
+				<Login />
 			);
 		}
 	};

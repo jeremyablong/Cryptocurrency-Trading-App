@@ -10,14 +10,22 @@ import { Query } from "react-apollo";
 import {
   LineChart, ResponsiveContainer, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
+import Etherium from "./crypto-charts/etherium.js";
+import XRP from "./crypto-charts/XRP.js";
+import BitcoinCash from "./crypto-charts/bitcoinCash.js";
+import Litecoin from "./crypto-charts/litecoin.js";
+import XLM from "./crypto-charts/XLM.js";
+import TableData from "../../api-results-display/table/table.js";
+
+
 
 const CRYPTO_QUERY = gql`
 	query {
-	  bitcoinIntervalData {
-	    timestamp
-	    open
-	    close
-	    low
+	  graphDisplayData {
+	    name
+	    market_cap
+	    circulating_supply
+	    price
 	    high
 	  }
 	}
@@ -32,7 +40,13 @@ constructor () {
 		data: [],
 		bitcoinData: [],
 		timestamp: [],
-		high: []
+		high: [],
+		ethOpen: false,
+		bitcoinOpen: true,
+		XRPopen: false,
+		bitcoinCashOpen: false,
+		litecoinOpen: false,
+		xlmOpen: false
 	}
 }
 	componentDidMount () {
@@ -40,7 +54,6 @@ constructor () {
 		// let timeStamp = date.getTime();
 		this.props.generateCryptoData()
 		axios.get("https://api.nomics.com/v1/candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=1h&currency=BTC&start=2019-07-18T00:00:00Z&end=2029-07-2T00:00:00Z").then((res) => {
-			console.log(res.data);
 			this.setState({
 				data: res.data
 			})
@@ -74,84 +87,27 @@ constructor () {
 		// 	);
 		// })
 	};
-	renderChartOne = () => {
-	// 	return (
-	// 		<Query query={CRYPTO_QUERY}>
-	// 		{
-	// 			({ loading, error, data }) => {
-	// 				if (loading) {
-	// 					return <h4>loading</h4>
-	// 				}
-	// 				if (error) {
-	// 					console.log(error);
-	// 				}
-	// 				if (data) {
-	// 					let ctx = document.getElementById('myChart').getContext('2d');
-	// 						let myChart = new Chart(ctx, {
-	// 					    type: 'line',
-	// 					    data: {
-	// 					        labels: [data.bitcoinIntervalData.map((item) => {
-	// 					        	return item.timestamp
-	// 					        })],
-	// 					        datasets: [{
-	// 					            label: 'Calories burned in last 7 days',
-	// 					            data: [data.bitcoinIntervalData.map((item) => {
-	// 					        	return item.high
-	// 					        })],
-	// 					            backgroundColor: [
-	// 					                'rgba(255, 99, 132, 0.2)',
-	// 					                'rgba(54, 162, 235, 0.2)',
-	// 					                'rgba(255, 206, 86, 0.2)',
-	// 					                'rgba(75, 192, 192, 0.2)',
-	// 					                'rgba(153, 102, 255, 0.2)',
-	// 					                'rgba(255, 159, 64, 0.2)'
-	// 					            ],
-	// 					            borderColor: [
-	// 					                'rgba(255, 99, 132, 1)',
-	// 					                'rgba(54, 162, 235, 1)',
-	// 					                'rgba(255, 206, 86, 1)',
-	// 					                'rgba(75, 192, 192, 1)',
-	// 					                'rgba(153, 102, 255, 1)',
-	// 					                'rgba(255, 159, 64, 1)'
-	// 					            ],
-	// 					            borderWidth: 1
-	// 					        }]
-	// 					    },
-	// 					    options: {
-	// 					        responsive: true,
-	// 					        maintainAspectRatio: false
-	// 					    }
-	// 					});
-	// 				}
-	// 				return null
-	// 				// return (
-	// 				// 	<React.Fragment>
-	// 				// 		<ul className="list_currencies">
-	// 				// 		{
-	// 				// 			data.data.map((item, index) => {
-	// 				// 				return <TableResults key={index} data={item} />
-	// 				// 			})
-	// 				// 		}
-	// 				// 		</ul>
-	// 				// 	</React.Fragment>
-	// 				// );
-	// 			}
-	// 		}
-	// 	</Query>
-	// );
-	};
-	renderChartDetails = () => {
-		let newArr = [];
-		let count = 0;
+	renderAllCharts = () => {
+		if (this.state.ethOpen) {
+			return <Etherium />
+		} else if (this.state.XRPopen && this.state.bitcoinOpen === false) {
+			return <XRP />
+		} else if (!this.state.ethOpen && !this.state.bitcoinOpen && !this.state.XRPopen && this.state.bitcoinCashOpen) {
+			return <BitcoinCash />
+		} else if (!this.state.ethOpen && !this.state.bitcoinOpen && !this.state.XRPopen && !this.state.bitcoinCashOpen && this.state.litecoinOpen) {
+			return <Litecoin />
+		} else if (!this.state.ethOpen && !this.state.bitcoinOpen && !this.state.XRPopen && !this.state.bitcoinCashOpen && !this.state.litecoinOpen && this.state.xlmOpen) {
+			return <XLM />
+		} 
 	};
 	render() {
 		let newArr = [];
 		let count = 0;
 		let result = this.state.data.map((item) => {
-			console.log(item)
+			// console.log(item)
 			let date = new Date(item.timestamp).toLocaleDateString("en-US")
 			let s = new Date(item.timestamp).toLocaleTimeString("en-US") 
-			return { name: date + " " + s, pv: Number(item.high), amt: Number(item.high) };
+			return { name: date + " " + s, USD: Number(item.high), amt: Number(item.high) };
 		})
 
 		let high = this.state.data.map((item) => {
@@ -161,7 +117,7 @@ constructor () {
 
 		highest.push(high);
 
-		console.log(highest)
+		// console.log(highest)
 		
 		const top = highest.reduce(function(prev, current) {
 		    return (prev > current) ? prev : current
@@ -169,13 +125,13 @@ constructor () {
 		const bottom = highest.reduce(function(prev, current) {
 		    return (prev < current) ? prev : current
 		}) 
-		console.log(top)
+		// console.log(top)
 		const amounts = highest.map((a) => a)
 
 		const highestAmount = Math.max(...top);
 		const lowestAmount = Math.min(...bottom);
-		console.log(highestAmount)
-		console.log(Math.round(lowestAmount))
+		// console.log(highestAmount)
+		// console.log(Math.round(lowestAmount))
 		// const options = {
 		// 	animationEnabled: true,
 		// 	exportEnabled: true,
@@ -201,14 +157,69 @@ constructor () {
 		// }
 		return (
 			<div style={{ marginTop: "40px" }}>
-			<h5 className="text-center">Hover over the line graph to view details</h5>
-			<ResponsiveContainer width="99%" aspect={3}>
+			<div className="row">
+				<div className="col-md-12">
+					<button onClick={() => {
+						this.setState({
+							ethOpen: false,
+							bitcoinOpen: true
+						})
+					}} style={{ marginLeft: "20px" }} className="btn btn-danger btn_btn">Bitcoin</button>
+					<button onClick={() => {
+						this.setState({
+							ethOpen: true,
+							bitcoinOpen: false
+						})
+					}} className="btn btn-info btn_btn">Ethereum</button>
+					<button onClick={() => {
+						this.setState({
+							ethOpen: false,
+							bitcoinOpen: false,
+							XRPopen: true
+						})
+					}} className="btn btn-warning btn_btn">XRP</button>
+					<button onClick={() => {
+						this.setState({
+							ethOpen: false,
+							bitcoinOpen: false,
+							XRPopen: false,
+							bitcoinCashOpen: true
+						})
+					}}  className="btn btn-success btn_btn">Bitcoin Cash</button>
+					<button onClick={() => {
+						this.setState({
+							ethOpen: false,
+							bitcoinOpen: false,
+							XRPopen: false,
+							bitcoinCashOpen: false,
+							litecoinOpen: true
+						})
+					}} className="btn btn-warning btn_btn">LiteCoin</button>
+					<button onClick={() => {
+						this.setState({
+							ethOpen: false,
+							bitcoinOpen: false,
+							XRPopen: false,
+							bitcoinCashOpen: false,
+							litecoinOpen: false,
+							xlmOpen: true
+						})
+					}} className="btn btn-danger btn_btn">Sellar Lumens</button>
+				</div>
+			</div>
+			{this.renderAllCharts()}
+			{this.state.bitcoinOpen && !this.state.ethOpen ? 	<div>
+		<div className="container">
+			<div className="col-md-12">
+				<h5 className="text-center"> BITCOIN - BTC - Hover over the line graph to view details </h5>
+			</div>
+		</div> <ResponsiveContainer width="99%" aspect={3}>
 				<LineChart
 			        width={1500} 
 			        height={300} 
 			        data={result} 
 			        margin={{
-			          top: 5, right: 30, left: 100, bottom: 5,
+			          top: 5, right: 30, left: 70, bottom: 5,
 			        }}
 			      >
 			        <CartesianGrid strokeDasharray="3 3" />
@@ -216,12 +227,15 @@ constructor () {
 			        <YAxis domain={[lowestAmount, highestAmount]} />
 			        <Tooltip />
 			        <Legend />
-			        <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={3} dot={false}/>
+			        <Line type="monotone" dataKey="USD" stroke="#8884d8" strokeWidth={3} dot={false}/>
 			        <Line type="monotone" dataKey="uv" stroke="#82ca9d" strokeWidth={3} dot={false} />
 			    </LineChart>
-			</ResponsiveContainer>
+			</ResponsiveContainer> </div> : null}
 				{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+			
+			<TableData />
 			</div>
+
 		);
 	}
 }

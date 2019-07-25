@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Homepage from "./components/home/homepage.js";
 import LandingPage from "./components/landing-page/afterAuthLanding.js";
 import CryptoHome from "./components/cryptoData/tracking/cryptoHome.js";
-import ProfileRegister from "./components/profile/register/register.js";
+import ProfileRegister from "./components/profile/register/account-home.js";
 import Navigation from "./components/universal/navbar.js";
 import Footer from "./components/universal/footer.js";
 import ApolloClient from "apollo-boost";
@@ -12,18 +12,19 @@ import { ApolloProvider } from "react-apollo";
 import TableData from "./components/api-results-display/table/table.js";
 import axios from "axios";
 
+// change this before deployment
 const client = new ApolloClient({
   uri: "http://localhost:5000/graphql"
 })
 
 class App extends Component {
-// componentDidMount () {
-//   axios.get("https://api.nomics.com/v1/candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=1d&currency=BTC").then((res) => {
-//     console.log(res.data);
-//   }).catch((err) => {
-//     console.log(err)
-//   })
-// }
+componentDidMount () {
+  axios.get("https://api.nomics.com/v1/candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=1d&currency=BTC").then((res) => {
+    console.log(res.data);
+  }).catch((err) => {
+    console.log(err)
+  })
+}
 render () {
     return (
       <ApolloProvider client={client}>

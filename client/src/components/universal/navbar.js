@@ -82,11 +82,15 @@ class Navigation extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <Link className="nav_item" to="/learnMore">Learn More </Link>
+                <Link className="nav_item" to="/learnMore">Accounts</Link>
               </NavItem>
-              {store.getState().authorize.data === "Email found, account verified.." ? <NavItem className="nav_item">
+             {/* {store.getState().authorize.data === "Email found, account verified.." ? <NavItem className="nav_item">
                 <Link className="turn_black" to="/tracking/currencies">View Crypto Charts</Link>
               </NavItem> : null}
+            */}
+            <NavItem className="nav_item">
+                <Link className="turn_black" to="/tracking/currencies">View Crypto Charts</Link>
+            </NavItem>
              
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle  className="nav_item" nav caret>
