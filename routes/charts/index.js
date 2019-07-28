@@ -42,6 +42,7 @@ router.get("/", (req, res) => {
 		  resp.on('data', (chunk) => {
 		    data += chunk;
 		    console.log(data)
+		    return data;
 		  });
 
 		  resp.on('end', () => {

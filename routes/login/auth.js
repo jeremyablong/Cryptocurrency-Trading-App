@@ -12,7 +12,7 @@ function verifyToken (req, res, next) {
 	const bearerHeader = req.headers['authorization'];
 
 	if (typeof bearerHeader !== undefined) {
-		
+		return null
 	} else {
 		// forbidden
 		res.sendStatus(403);
@@ -46,7 +46,7 @@ mongo.connect(config.get("mongoURI"), verifyToken, cors(), function(err, db) {
 							res.send(token);
 			       		})
 				    } else {
-				    	res.json({ user: "Email NOT found, account couldn't be authenticated." });
+				    	return res.json({ user: "Email NOT found, account couldn't be authenticated." });
 				    }
 		       	}  else {
 				    return res.json({ user: "Email NOT found, account couldn't be authenticated." });

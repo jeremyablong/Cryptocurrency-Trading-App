@@ -25,11 +25,11 @@ mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 	       			if (err) {
 	       				console.log(err)
 	       			}
-					res.json({
+					return res.json({
 						token: token
 					})
 					console.log(token)
-					res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+					return res.cookie('token', token, { httpOnly: true }).sendStatus(200);
 					console.log(token)
 	       		})
 				NewUser.save((error, docs) => {

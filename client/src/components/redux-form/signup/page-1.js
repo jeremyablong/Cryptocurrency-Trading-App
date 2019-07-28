@@ -28,11 +28,11 @@ constructor () {
 	handleSubmitOne = (e) => {
 		e.preventDefault();
 		
-		axios.post("/twostep/authenitcate").then((res) => {
-			console.log(res)
-		}).catch((err) => {
-			console.log(err)
-		})
+		// axios.post("/twostep/authenitcate").then((res) => {
+		// 	console.log(res)
+		// }).catch((err) => {
+		// 	console.log(err)
+		// })
 		this.setState({
 			page: 2
 		})
@@ -165,7 +165,11 @@ constructor () {
 										</div>
 									</div>
 						          </form>
-						          <button style={{ marginTop: "20px" }} className="btn btn-danger" onClick={this.goBack}>Back to page one</button>
+						          <button style={{ marginTop: "20px" }} className="btn btn-danger" onClick={() => {
+						          	this.setState({
+						          		page: 1
+						          	})
+						          }}>Back to page one</button>
 						        </div>
 						      </div>
 							</div>

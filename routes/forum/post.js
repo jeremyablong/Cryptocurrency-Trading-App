@@ -32,9 +32,9 @@ mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 			}
 	      
 	        if (user) {
-	        	res.json({ user: "User successfully added." })
+	        	return res.json({ user: "User successfully added." })
 	        } else {
-	        	res.json({ error: "User was not added properly." })
+	        	return res.json({ error: "User was not added properly." })
 	        }
 	})
 })
