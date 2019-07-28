@@ -19,7 +19,7 @@ class Icons extends Component {
 				<div className="row">
 					<div className="col-md-12">
 					<Link to="/signup/initital">
-						<button onClick={this.props.addPage()} className="btn btn-info" style={{ width: "100%" }}>SIGN UP TODAY!</button>
+						<button className="btn btn-info" style={{ width: "100%" }}>SIGN UP TODAY!</button>
 					</Link>
 					</div>
 				</div>
