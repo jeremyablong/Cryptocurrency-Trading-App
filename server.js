@@ -3,11 +3,25 @@ const app = express();
 const connectDB = require("./config/db.js");
 const router = express.Router();
 const graphqlHTTP = require("express-graphql");
+const socketIo = require("socket.io");
 // init middleware
 const bodyParser = require('body-parser');
 const graphqlSchemaIntervals = require("./schemas/cryptoIntervalTimes.js");
 const graphqlSchema = require("./schemas/schema.js");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const cookieParser = require('cookie-parser');
+const axios = require("axios");
+const fs = require('fs');
+const https = require("https");
+const http = require("http");
+const CircularJSON = require("circular-json");
+
+
+
+
+
+
 
 // connect db
 connectDB();
@@ -15,7 +29,12 @@ connectDB();
 app.use(cors());
 
 
+app.use(function (req, res, next) {
+    req.ws = ws;
+    return next();
+});
 
+app.use(cookieParser());
 
 app.use("/graphql", cors(), graphqlHTTP({
 	schema: graphqlSchema,
@@ -31,6 +50,11 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.use("/auth/login", require("./routes/login/auth.js"));
 app.use("/auth/logout", require("./routes/login/logout.js"));
 app.use("/forum/post", require("./routes/forum/post.js"));
+app.use("/authenticate", require("./routes/api/authenticate.js"));
+app.use("/twostep/authenitcate", require("./routes/2-step/email-2-step.js"));
+app.use("/chart/data", require("./routes/charts/index.js"));
+
+
 
 
 app.use(function(req, res, next) {
@@ -58,7 +82,75 @@ if (process.env.NODE_ENV === "production") {
 }; 
 
 const PORT = process.env.PORT || 5000;
+const SOCKET_PORT = process.env.PORT || 8000;
+
+
+
+// Loading the index file . html displayed to the client
+var server = http.createServer(function(req, res) {
+	
+});
+
+// Loading socket.io
+var io = require('socket.io').listen(server);
+
+// When a client connects, we note it in the console
+io.sockets.on('connection', function (socket) {
+    console.log('A client is connected!');
+
+	const url = "https://"
+
+	var options = {
+	  "method": "GET",
+	  "hostname": "rest.coinapi.io",
+	  "Content-Type": "application/json",
+	  "path": "/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/latest?period_id=1MIN",
+	  "headers": {'X-CoinAPI-Key': '57F960B2-4279-44B7-8474-49F314CF6834'}
+	};
+
+
+	https.get(options, (resp) => {
+	  let chunks = [];
+
+	  // A chunk of data has been recieved.
+	  resp.on('data', (chunk) => {
+	    chunks.push(chunk);
+	    // let json = CircularJSON.stringify(chunks);
+		let data = JSON.parse(chunks);
+		console.log(data)
+	  });
+	  // The whole response has been received. Print out the result.
+	  // resp.on('end', () => {
+	  //   console.log(JSON.parse(data).explanation);
+	  // });
+
+	}).on("error", (err) => {
+	  console.log("Error: " + err.message);
+	});
+});
+
+
+server.listen(SOCKET_PORT, () => console.log(`Listening on port ${SOCKET_PORT}`));
+
+
+// io.listen(SOCKET_PORT, () => {
+// 	console.log(`Socket.io listening on port ${SOCKET_PORT}`)
+// });
 
 app.listen(PORT, () => {
 	console.log(`App is listening at port ${PORT}`)
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

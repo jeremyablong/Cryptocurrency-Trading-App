@@ -4,10 +4,22 @@ const LoginUser = require("../../models/auth/Login.js");
 const mongo = require("mongodb");
 const config = require("config");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const Nexmo = require('nexmo');
 
+// verfiy token
+function verifyToken (req, res, next) {
+	const bearerHeader = req.headers['authorization'];
 
-mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
+	if (typeof bearerHeader !== undefined) {
+		
+	} else {
+		// forbidden
+		res.sendStatus(403);
+	}
+}
 
+mongo.connect(config.get("mongoURI"), verifyToken, cors(), function(err, db) {
 	router.post('/', function(req, res) {
 		res.header("Access-Control-Allow-Origin", "*");
 	    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -18,22 +30,34 @@ mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 	        	if (err) {
 	        		console.log(err);
 	        	}
-	        	console.log(item);
-	        	console.log("Start log for authentication...");
 		       	if (item) {
 		       		if (item.email === req.body.email && item.password === req.body.password) {
-				        return res.json({ user: "Email found, account verified.." });
+
+						jwt.sign({ user: item }, "secretkey", (err, token) => {
+			       			if (err) {
+			       				console.log(err)
+			       			}
+			       			// nexmo.message.sendSms(from, to, text);
+							res.json({
+								token: token,
+								item
+							})
+							
+							res.send(token);
+			       		})
+				    } else {
+				    	res.json({ user: "Email NOT found, account couldn't be authenticated." });
 				    }
-			        res.send(item);
 		       	}  else {
 				    return res.json({ user: "Email NOT found, account couldn't be authenticated." });
 				}
-		      
 		    });
-			// return res.json({ user: "Email NOT found, account couldn't be authenticated." });
     	});
-
 	})
-
 })
+
+
+
+
+
 module.exports = router;

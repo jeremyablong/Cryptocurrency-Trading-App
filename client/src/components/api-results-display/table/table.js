@@ -55,11 +55,12 @@ constructor () {
 					{
 						({ loading, error, data }) => {
 							if (loading) {
-								return <h4>loading</h4>
+								return <h4 className="black_text text-center">loading</h4>
 							}
 							if (error) {
 								console.log(error);
 							}
+							window.scrollTo(0, 0)
 							return (
 								<React.Fragment>
 									<ul className="list_currencies">
@@ -80,7 +81,7 @@ constructor () {
 	render() {
 		return (
 			<React.Fragment>
-				<div style={{ marginBottom: "25px" }} className="container-fluid black_container">
+				<div style={{ marginBottom: "15px", paddingTop: "10px" }} className="container-fluid black_container">
 					<h1 className="text-center adjust_size">Search for any cryptocurrency on the market! We have them all.</h1>
 					<h1 className="text-center adjust_size_two">Swipe to view all the stats of each cryptocurrency or search</h1>
 					{/*<form onSubmit={this.submitInput}>

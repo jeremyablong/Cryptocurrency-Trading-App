@@ -1,4 +1,6 @@
 {
 	"mongoURI": "mongodb://jeremyablong:Jer$8246355@cryptocluster-shard-00-00-wcpjo.mongodb.net:27017,cryptocluster-shard-00-01-wcpjo.mongodb.net:27017,cryptocluster-shard-00-02-wcpjo.mongodb.net:27017/test?ssl=true&replicaSet=CryptoCluster-shard-0&authSource=admin&retryWrites=true&w=majority",
-	"jwtSecret": "laidfjoaldfijaeladfliajeflaiejfealfij"
+	"jwtSecret": "laidfjoaldfijaeladfliajeflaiejfealfij",
+	"coinbaseAPIKey": "O1u0c9T1cwkUFIIU",
+	"coinbaseAPISecret": "XXiYyDQNIWApJ5JCK7I8R2O92OFOkVeN"
 }

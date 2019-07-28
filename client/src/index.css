@@ -1,3 +1,9 @@
 html, body {
 	overflow-x: hidden;
 }
+.black_text {
+	color: black !important;
+}
+.blue {
+	 background-image: -webkit-linear-gradient( -28deg, #f87f73 0%, #f87f73 60%, #292423 60%, #292423 60%);
+}

@@ -1,0 +1,12 @@
+.form_container {
+	min-height: 700px !important;
+}
+
+
+#form_form {
+	background-image: url("../../../images/102.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	font-family: 'Roboto', sans-serif;
+	height: 100vh;
+}

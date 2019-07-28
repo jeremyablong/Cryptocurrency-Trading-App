@@ -3,7 +3,6 @@ import "./table-display.css";
 
 class TableResults extends Component {
 	render() {
-		window.scrollTo(0, 0)
 		const { currency, id, price, price_date, symbol, circulating_supply, max_supply, name, logo_url, market_cap, rank, high,  high_timestamp } = this.props.data;
 		return (
 			<div className="row">

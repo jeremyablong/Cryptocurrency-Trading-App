@@ -56,9 +56,9 @@ constructor () {
 		//////////////// CHANGE THIS TO CONDITIONALLY RENDER BEFORE DEPLOYMENT /////////////////////
 
 
-		if (store.getState().authorize.data === "Email found, account verified..") {
+		if (localStorage.getItem("JWTToken")) {
 		return (
-			<h1> signed in</h1>
+			<h1 className="text-dark"> signed in</h1>
 		);			
 		} else {
 			return (

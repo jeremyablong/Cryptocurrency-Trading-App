@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./home.css";
-import { loginUser, auth } from "../../actions/index.js";
+import { loginUser, auth, loadUser } from "../../actions/index.js";
 import { connect } from "react-redux";
 import axios from "axios";
 import { withRouter } from "react-router";
@@ -29,8 +29,14 @@ constructor (props) {
 
 		this.props.auth(config);
 
+
+    	
+
 		axios.post("/auth/login", config).then((res) => {
-			if (res.data.user === "Email found, account verified..") {
+			this.props.loadUser(res.data.token);
+			// console.log(res.data.token)
+			if (res.data.token) {
+				localStorage.setItem('JWTToken', JSON.stringify(res.data.token))
 				this.props.history.push("/homepage");
 				console.log("EMAIL FOUND.");
 			} else {
@@ -40,7 +46,7 @@ constructor (props) {
 			console.log(err);
 		})
 		setTimeout(() => {
-            if (store.getState().authorize.data === "Email NOT found, account couldn't be authenticated." || store.getState().authorize.data === "EMAIL NOT FOUND.") {
+            if (!localStorage.getItem("JWTToken")) {
                 alert("Please enter valid credentials.")
             }
         }, 300)
@@ -113,4 +119,4 @@ const mapStateToProps = () => {
 }
 
 
-export default withRouter(connect(mapStateToProps, { loginUser, auth })(Login));
+export default withRouter(connect(mapStateToProps, { loginUser, auth, loadUser })(Login));

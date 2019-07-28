@@ -31,29 +31,19 @@ class Navigation extends Component {
       loginPassword: ""
     };
   }
-  componentDidMount () {
-    axios.get("/api/profile").then((res) => {
-      console.log(res.data);
-      this.setState({
-        data: res.data
-      })
-    }).catch((err) => {
-      console.log(err);
-    })
-  }
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
   };
   redirectRegistration = () => {
-    this.props.history.push("/");
+    this.props.history.push("/signup/initital");
   };
   redirectLogin = () => {
     this.props.history.push("/login");
   };
   logout = () => {
-
+    localStorage.removeItem('JWTToken')
     this.props.signOut();
 
     console.log("Logout");
@@ -61,7 +51,7 @@ class Navigation extends Component {
     this.props.history.push("/");
   };
   authorize = ()=> {
-    if (store.getState().authorize.data === "Email found, account verified..") {
+    if (localStorage.getItem("JWTToken")) {
       return (
         <button onClick={this.logout} style={{ marginRight: "20px" }} className="btn btn-danger" href="/">LOGOUT</button>
       );
@@ -113,7 +103,7 @@ class Navigation extends Component {
                 {this.authorize()}
               </NavItem>
               <NavItem>
-              <Link to="/">
+              <Link to="/signup/initital">
                 <button onClick={this.redirectRegistration} className="btn btn-success register_btn">REGISTER</button>
               </Link>
               </NavItem>

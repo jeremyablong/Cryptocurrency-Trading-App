@@ -93,17 +93,20 @@ constructor () {
 	};
 	handleLoginSubmit = (e) => {
 		e.preventDefault();
-		this.props.loginUser({ 
-			email: this.state.loginEmail.toLowerCase(),
-			password: this.state.loginPassword
-		});
+		// this.props.loginUser({ 
+		// 	email: this.state.loginEmail.toLowerCase(),
+		// 	password: this.state.loginPassword
+		// });
         const config = { 
             email: this.state.loginEmail.toLowerCase(),
             password: this.state.loginPassword
         }
 
         this.props.auth(config);
+
+        
         axios.post("/auth/login", config).then((res) => {
+            console.log(res.data.token)
             if (res.data.user === "Email found, account verified..") {
                 this.props.history.push("/homepage");
                 console.log("EMAIL FOUND.");
@@ -169,18 +172,7 @@ constructor () {
                                             }} type={this.state.hidden ? "password" : "text"} className="form-control" placeholder="Password *" value={this.state.registered ? "You're registered" : this.state.password} />
                                         </div>
                                         <h6 onClick={this.togglePassword}> <i className="fas fa-eye"></i> Show Password </h6>
-           {/*                             <div className="form-group">
-                                            <div className="maxl">
-                                                <label className="radio inline"> 
-                                                    <input type="radio" name="gender" value="male"  />
-                                                    <span> Male </span> 
-                                                </label>
-                                                <label className="radio inline"> 
-                                                    <input type="radio" name="gender" value="female"/>
-                                                    <span>Female </span> 
-                                                </label>
-                                            </div>
-                                        </div>*/}
+   
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
@@ -199,14 +191,7 @@ constructor () {
                                             	})
                                             }} type="text" minLength="10" maxLength="10" name="txtEmpPhone" className="form-control" placeholder="Your Phone *" value={this.state.registered ? "You're registered" : this.state.number} />
                                         </div>
-                                       {/* <div className="form-group">
-                                            <select className="form-control">
-                                                <option className="hidden"   disabled>Please select your Sequrity Question</option>
-                                                <option>What is your Birthdate?</option>
-                                                <option>What is Your old Phone Number</option>
-                                                <option>What is your Pet Name?</option>
-                                            </select>
-                                        </div>*/}
+                                       
                                         <div className="form-group">
                                             <input onChange={(e) => {
                                             	this.setState({

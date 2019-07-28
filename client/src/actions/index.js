@@ -1,4 +1,4 @@
-import { USER, LOGIN, AUTH, SIGNOUT, GENERATE_CRYPTO_DATA } from "./types.js";
+import { USER, LOGIN, AUTH, SIGNOUT, GENERATE_CRYPTO_DATA, LOAD_TOKEN } from "./types.js";
 import axios from "axios";
 // Register user
 export const registerUser = (item) => async dispatch => {
@@ -45,3 +45,25 @@ export const generateCryptoData = (data) => async dispatch => {
 		console.log(err);
 	})
 }
+export const loadUser = (data) => async dispatch => {
+	await axios.post("/auth/login", data).then((res) => {
+		console.log(data);
+		dispatch({
+			type: "LOAD_TOKEN", payload: data
+		})
+	}).catch((err) => {
+		console.log(err);
+	})
+}
+
+
+
+
+
+
+
+
+
+
+
+//

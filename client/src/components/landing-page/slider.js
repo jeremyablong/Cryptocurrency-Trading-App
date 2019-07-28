@@ -13,6 +13,7 @@ constructor () {
     email: "Johndoe23@gmail.com"
   }
 }
+
   render() {
     const settings = {
       dots: true,
