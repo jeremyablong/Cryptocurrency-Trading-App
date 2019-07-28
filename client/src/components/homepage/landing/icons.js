@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addPage } from "../../../actions/index.js";
+
+
 
 class Icons extends Component {
 	render() {
@@ -13,7 +18,9 @@ class Icons extends Component {
 				</div>
 				<div className="row">
 					<div className="col-md-12">
-						<button className="btn btn-info" style={{ width: "100%" }}>SIGN UP TODAY!</button>
+					<Link to="/signup/initital">
+						<button onClick={this.props.addPage()} className="btn btn-info" style={{ width: "100%" }}>SIGN UP TODAY!</button>
+					</Link>
 					</div>
 				</div>
 			</div>
@@ -21,4 +28,4 @@ class Icons extends Component {
 		);
 	}
 }
-export default Icons;
+export default connect(null, { addPage })(Icons);

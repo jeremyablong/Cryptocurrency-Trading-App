@@ -7,7 +7,7 @@ class OfficialLanding extends Component {
 	render() {
 		return (
 		<div className="background_three"> 
-		<TableData />
+	
 			<div className="container">
 				<div className="row">
 					<div className="col-md-12" style={{ paddingTop: "20px" }}>

@@ -48,6 +48,9 @@ constructor () {
 			page: this.state.page - 1
 		})
 	};
+	goBack = () => {
+		this.props.goBackPage()
+	};
 	wizardPageOne = () => {
 		return (
 		<div className="blue">
@@ -162,6 +165,7 @@ constructor () {
 										</div>
 									</div>
 						          </form>
+						          <button style={{ marginTop: "20px" }} className="btn btn-danger" onClick={this.goBack}>Back to page one</button>
 						        </div>
 						      </div>
 							</div>
@@ -177,12 +181,7 @@ constructor () {
 		return (
 		<div>
 			{page === 1 ? this.wizardPageOne() : null}
-			{page === 2 ? <ReduxSignupPageTwo /> : null}
-			<button className="btn btn-danger" onClick={() => {
-				this.setState({
-					page: 1
-				})
-			}}>Back to page one</button>
+			{page === 2 ? <ReduxSignupPageTwo data={this.state} /> : null}
 		</div>
 		);
 	}

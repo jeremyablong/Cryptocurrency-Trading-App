@@ -107,7 +107,8 @@ constructor () {
         
         axios.post("/auth/login", config).then((res) => {
             console.log(res.data.token)
-            if (res.data.user === "Email found, account verified..") {
+            if (res.data.token) {
+                localStorage.setItem('JWTToken', JSON.stringify(res.data.token))
                 this.props.history.push("/homepage");
                 console.log("EMAIL FOUND.");
             } else {

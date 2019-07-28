@@ -46,7 +46,7 @@ constructor (props) {
 			console.log(err);
 		})
 		setTimeout(() => {
-            if (!localStorage.getItem("JWTToken")) {
+            if (store.getState().authorize.data === "Email NOT found, account couldn't be authenticated." || store.getState().authorize.data === "EMAIL NOT FOUND.") {
                 alert("Please enter valid credentials.")
             }
         }, 300)

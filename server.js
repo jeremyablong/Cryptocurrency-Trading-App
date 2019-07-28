@@ -17,7 +17,13 @@ const https = require("https");
 const http = require("http");
 const CircularJSON = require("circular-json");
 const BJSON = require('buffer-json')
+// Loading the index file . html displayed to the client
+var server = http.createServer(function(req, res) {
+	
+});
 
+// Loading socket.io
+var io = require('socket.io').listen(server);
 
 
 
@@ -29,10 +35,14 @@ connectDB();
 app.use(cors());
 
 
-app.use(function (req, res, next) {
-    req.ws = ws;
-    return next();
-});
+// app.use(function (req, res, next) {
+//     req.ws = ws;
+//     return next();
+// });
+
+// next line is the money
+app.set('socketio', io);
+
 
 app.use(cookieParser());
 
@@ -86,47 +96,39 @@ const SOCKET_PORT = process.env.PORT || 8000;
 
 
 
-// Loading the index file . html displayed to the client
-var server = http.createServer(function(req, res) {
-	
-});
+// // When a client connects, we note it in the console
+// io.sockets.on('connection', function (socket) {
+//     console.log('A client is connected!');
 
-// Loading socket.io
-var io = require('socket.io').listen(server);
+// 	const url = "https://"
 
-// When a client connects, we note it in the console
-io.sockets.on('connection', function (socket) {
-    console.log('A client is connected!');
-
-	const url = "https://"
-
-	var options = {
-	  "method": "GET",
-	  "hostname": "rest.coinapi.io",
-	  "Content-Type": "application/json",
-	  "path": "/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/latest?period_id=1MIN",
-	  "headers": {'X-CoinAPI-Key': '57F960B2-4279-44B7-8474-49F314CF6834'}
-	};
+// 	var options = {
+// 	  "method": "GET",
+// 	  "hostname": "rest.coinapi.io",
+// 	  "Content-Type": "application/json",
+// 	  "path": "/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/latest?period_id=1MIN",
+// 	  "headers": {'X-CoinAPI-Key': '57F960B2-4279-44B7-8474-49F314CF6834'}
+// 	};
 
 
-	https.get(options, (resp) => {
-	  let data = '';
+// 	https.get(options, (resp) => {
+// 	  let data = '';
 
-	  // A chunk of data has been recieved.
-	  resp.on('data', (chunk) => {
-	    data += chunk;
-	    console.log(data)
-	  });
+// 	  // A chunk of data has been recieved.
+// 	  resp.on('data', (chunk) => {
+// 	    data += chunk;
+// 	    console.log(data)
+// 	  });
 
-	  // The whole response has been received. Print out the result.
-	  // resp.on('end', () => {
-	  //   console.log(JSON.parse(data).explanation);
-	  // });
+// 	  // The whole response has been received. Print out the result.
+// 	  // resp.on('end', () => {
+// 	  //   console.log(JSON.parse(data).explanation);
+// 	  // });
 
-	}).on("error", (err) => {
-	  console.log("Error: " + err.message);
-	});
-});
+// 	}).on("error", (err) => {
+// 	  console.log("Error: " + err.message);
+// 	});
+// });
 
 
 server.listen(SOCKET_PORT, () => console.log(`Listening on port ${SOCKET_PORT}`));

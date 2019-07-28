@@ -9,12 +9,10 @@ class HomepageMain extends Component {
 	render() {
 		return (
 			<div>
-				<Navigation />
+				<Navigation />	
+				<LandingPage />
+				<OfficialLanding />
 				
-				<TradingDashboard />
-
-				{/*<OfficialLanding />*/}
-				{/*<LandingPage />*/}
 			</div>
 		);
 	}

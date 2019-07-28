@@ -1,4 +1,4 @@
-import { USER, LOGIN, AUTH, SIGNOUT, GENERATE_CRYPTO_DATA, LOAD_TOKEN } from "./types.js";
+import { USER, LOGIN, AUTH, ADD_PAGE, GO_BACK_PAGE, SIGNOUT, GENERATE_CRYPTO_DATA, LOAD_TOKEN } from "./types.js";
 import axios from "axios";
 // Register user
 export const registerUser = (item) => async dispatch => {
@@ -55,8 +55,18 @@ export const loadUser = (data) => async dispatch => {
 		console.log(err);
 	})
 }
-
-
+export const addPage = (item) => {
+	return {
+		type: "ADD_PAGE",
+		payload: item
+	}
+}
+export const goBackPage = (item) => {
+	return {
+		type: "GO_BACK_PAGE",
+		payload: item
+	}
+}
 
 
 

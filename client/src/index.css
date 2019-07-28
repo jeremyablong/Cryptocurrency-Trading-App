@@ -7,3 +7,6 @@ html, body {
 .blue {
 	 background-image: -webkit-linear-gradient( -28deg, #f87f73 0%, #f87f73 60%, #292423 60%, #292423 60%);
 }
+.blue_two {
+	 background-image: -webkit-linear-gradient( -248deg, #f87f73 0%, #292423 60%, #f87f73 60%, #292423 60%);
+}

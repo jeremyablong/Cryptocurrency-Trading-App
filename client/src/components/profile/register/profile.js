@@ -58,7 +58,7 @@ constructor () {
 
 		if (localStorage.getItem("JWTToken")) {
 		return (
-			<h1 className="text-dark"> signed in</h1>
+			<h1 className="text-dark text-center"> You may now see this content because you are logged in.</h1>
 		);			
 		} else {
 			return (
