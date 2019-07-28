@@ -92,8 +92,6 @@ if (process.env.NODE_ENV === "production") {
 }; 
 
 const PORT = process.env.PORT || 5000;
-const SOCKET_PORT = process.env.PORT || 8000;
-
 
 
 // // When a client connects, we note it in the console
@@ -129,9 +127,6 @@ const SOCKET_PORT = process.env.PORT || 8000;
 // 	  console.log("Error: " + err.message);
 // 	});
 // });
-
-
-server.listen(SOCKET_PORT, () => console.log(`Listening on port ${SOCKET_PORT}`));
 
 
 // io.listen(SOCKET_PORT, () => {
