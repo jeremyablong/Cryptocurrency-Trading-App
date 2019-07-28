@@ -6,30 +6,24 @@ const app = express();
 const router = express.Router();
 const axios = require('axios');
 const CircularJSON = require('circular-json');
-const request = require("request");
+
 
 router.get("/", (req, res) => {	
+	// const https = require('https');
 
+	// const url = "http://localhost:5000";
 
-	
-	// const WebSocket = require("ws");
-
-
-	// const host = 'wss://www.quidax.com:8080';
-	// const Socket = new WebSocket(host);
-
-	// Socket.onopen = function() {
-	//   Console.log("opened");
-	// }
-
-	// Socket.onmessage = function(msg) {
-	//   Console.log(msg);
-	// }
-
-	// Socket.onclose = function() {
-	//   Console.log("closed");
-	// }
-
+	// var options = {
+	//   "method": "GET",
+	//   "hostname": "http://rest.coinapi.io",
+	//   "Content-Type": "text/plain",
+	//   "path": "/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/latest?period_id=1MIN",
+	//   "headers": {'X-CoinAPI-Key': '57F960B2-4279-44B7-8474-49F314CF6834'}
+	// };
+	// request(options, { json: true }, (err, res, body) => {
+	//   if (err) { return console.log(err); }
+	//   console
+	// });
 	// axios.get(url, options)
 	//   .then((response) => {
 	//     let json = CircularJSON.stringify(response);

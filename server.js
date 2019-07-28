@@ -16,7 +16,7 @@ const fs = require('fs');
 const https = require("https");
 const http = require("http");
 const CircularJSON = require("circular-json");
-
+const BJSON = require('buffer-json')
 
 
 
@@ -110,15 +110,14 @@ io.sockets.on('connection', function (socket) {
 
 
 	https.get(options, (resp) => {
-	  let chunks = [];
+	  let data = '';
 
 	  // A chunk of data has been recieved.
 	  resp.on('data', (chunk) => {
-	    chunks.push(chunk);
-	    // let json = CircularJSON.stringify(chunks);
-		let data = JSON.parse(chunks);
-		console.log(data)
+	    data += chunk;
+	    console.log(data)
 	  });
+
 	  // The whole response has been received. Print out the result.
 	  // resp.on('end', () => {
 	  //   console.log(JSON.parse(data).explanation);
