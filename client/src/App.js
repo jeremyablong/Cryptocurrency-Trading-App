@@ -13,10 +13,10 @@ import TableData from "./components/api-results-display/table/table.js";
 import axios from "axios";
 import store from "./store/store.js";
 import ReduxPageOneSignup from "./components/redux-form/signup/page-1.js";
-
+import Validate from "./components/redux-form/signup/validate.js";
 // change this before deployment
 const client = new ApolloClient({
-  uri: "http://localhost:5000/graphql"
+  uri: "https://lit-fortress-30165.herokuapp.com/graphql"
 })
 
 class App extends Component {
@@ -59,7 +59,9 @@ render () {
           <Route exact path="/signup/initital" component={Navigation} />
           <Route exact path="/signup/initital" component={ReduxPageOneSignup} />
           <Route exact path="/signup/initial" component={Footer} />
-          
+          <Route exact path="/validate" component={Navigation} />
+          <Route exact path="/validate" component={Validate} />
+          <Route exact path="/validate" component={Footer} />
           </div>
         </BrowserRouter>
       </ApolloProvider>

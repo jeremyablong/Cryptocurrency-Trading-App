@@ -6,12 +6,26 @@ const config = require("config");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 
+
+
 // add route
 // public
 mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 	router.post('/', function(req, res) {
-		const { firstName, lastName, email, password, number, secret } = req.body;
-		const NewUser = new User(req.body);
+		const { firstname, lastname, email, password, state, addressZip, addressCity, addressStreet, country, checkbox } = req.body;
+		const NewUser = new User({
+			firstname, 
+			lastname, 
+			email, 
+			password, 
+			state, 
+			addressZip, 
+			addressCity, 
+			addressStreet, 
+			country, 
+			checkbox
+		});
+		console.log(NewUser)
 		res.header("Access-Control-Allow-Origin", "*");
 	    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     	db.collection('users', function(err, collection) {
@@ -25,16 +39,16 @@ mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 	       			if (err) {
 	       				console.log(err)
 	       			}
-					return res.json({
+					res.json({
 						token: token
 					})
 					console.log(token)
-					return res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+					res.cookie('token', token, { httpOnly: true }).sendStatus(200);
 					console.log(token)
 	       		})
 				NewUser.save((error, docs) => {
 					if (error) {
-						console.log("Error during registration.");
+						console.log("The following error occurred: " + error)
 					} else {
 						console.log("Valid registration.")
 					}

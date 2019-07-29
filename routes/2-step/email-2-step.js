@@ -11,7 +11,7 @@ const jwt = require("jsonwebtoken");
 mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 	router.post('/', function(req, res) {
 
-		var kickbox = require('kickbox').client('test_22e5966860f27aa7d2ab1740ce1dd1bf0db7638448fcc6afe55aa8913403c2d4').kickbox();
+		var kickbox = require('kickbox').client('test_ddc76250b2f50980b44e8d80360e38c661ff8624a47d360c1bb853d20d5e2820').kickbox();
 
 		kickbox.verify("jeremyablong@icloud.com", function (err, response) {
 		  // Let's see some results
