@@ -63,6 +63,7 @@ app.use("/forum/post", require("./routes/forum/post.js"));
 app.use("/authenticate", require("./routes/api/authenticate.js"));
 app.use("/twostep/authenitcate", require("./routes/2-step/email-2-step.js"));
 app.use("/chart/data", require("./routes/charts/index.js"));
+app.use("/chart/gdax", require("./routes/charts/socket.io/index.js"));
 
 
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navigation from "../universal/navbar.js";
 import LandingPage from "./landing/landing-page.js";
 import OfficialLanding from "./landing/official-landing.js";
-import TradingDashboard from "../trade-dashboard/dashboard/main.js";
+import Exchange from "../trade-dashboard/actual-dashboard/exchange.js";
 
 
 class HomepageMain extends Component {
@@ -12,7 +12,7 @@ class HomepageMain extends Component {
 				<Navigation />	
 
 				<LandingPage />
-				<TradingDashboard />
+				<Exchange />
 				<OfficialLanding />
 				
 			</div>

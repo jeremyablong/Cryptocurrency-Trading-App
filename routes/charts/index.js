@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
 		var options = {
 		  "method": "GET",
 		  "hostname": "rest.coinapi.io",
-		  "path": "/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history?period_id=1HRS&time_start=2019-07-27T00:00:00",
+		  "path": "/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/latest?period_id=1HRS",
 		  "headers": {'X-CoinAPI-Key': '8CA1D81F-B5A8-49FE-87B3-5630DE1A7A96'}
 		};
 

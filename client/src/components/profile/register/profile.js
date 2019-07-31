@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import store from "../../../store/store.js";
 import Login from "../../home/login.js";
+import Exchange from "../../trade-dashboard/actual-dashboard/exchange.js";
 
 
 class Profile extends Component {
@@ -58,7 +59,7 @@ constructor () {
 
 		if (localStorage.getItem("JWTToken")) {
 		return (
-			<h1 className="text-dark text-center"> You may now see this content because you are logged in.</h1>
+			<Exchange />
 		);			
 		} else {
 			return (

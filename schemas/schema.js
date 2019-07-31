@@ -48,6 +48,9 @@ const CryptoType = new GraphQLObjectType({
 		},
 		high_timestamp: {
 			type: GraphQLString
+		},
+		volume: {
+			type: GraphQLString
 		}
 	})
 })
@@ -137,6 +140,7 @@ const RootQuery = new GraphQLObjectType({
 			resolve(parent, args) {
 				// where we get our data //
 				return axios.get("https://api.nomics.com/v1/currencies/ticker?key=561df32fa25fd3d93ae7064e0da5c8a2").then((res) => {
+					console.log(res.data)
 					return res.data
 				}).catch((err) => {
 					console.log(err)
