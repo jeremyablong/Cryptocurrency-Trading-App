@@ -26,8 +26,18 @@ body{
     overflow-x: hidden;
     font-size: 13px;
 }
+.back_white {
+    background: black;
+}
+
+p {
+    color: white;
+}
 iframe body{
     margin: 0;
+}
+.background_black {
+    background: black;
 }
 /*------------- dark theme -------------*/
 .crypt-dark{
@@ -55,6 +65,10 @@ iframe body{
 }
 .crypt-deepblue-segment{
     background: #131a33;
+}
+.hover_change:hover {
+    background: white !important;
+    color: black;
 }
 body.crypt-dark .input-group-text{
 
@@ -709,6 +723,8 @@ ul.nav-tabs li a.active{
 table td,
 table th{
     border: none !important;
+    color: white;
+    background: black;
 }
 
 /*---- Dark ----*/
@@ -821,7 +837,7 @@ body.crypt-dark .crypt-sell{
 
 /*0--- market Capacity ----*/
 .crypt-table-striped tbody tr:nth-of-type(even){
-    background-color: #f7fbff; 
+    background-color:  #233161 !important; 
 }
 .crypt-table-market-cap{
     background: #fff;

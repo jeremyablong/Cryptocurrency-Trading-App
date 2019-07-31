@@ -1,9 +1,30 @@
 import React, { Component } from 'react';
 import "./css/style.css";
 import "./css/ui.css";
+import gql from "graphql-tag";
+import { Query } from "react-apollo";
 import Chart from "chart.js";
 import TradingDashboard from "../dashboard/main.js";
 
+const CRYPTO_QUERY = gql`
+	query {
+		data {
+			currency
+			id
+			price
+			price_date
+			symbol
+			circulating_supply
+			max_supply
+			name
+			logo_url
+			market_cap
+			rank
+			high
+			high_timestamp	
+		}	
+	}
+`;
 
 class Exchange extends Component {
 constructor () {
@@ -186,7 +207,36 @@ constructor () {
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody className="crypt-table-hover">
-		                                        <tr>
+		                                 <Query query={CRYPTO_QUERY}>
+											{
+												({ loading, error, data }) => {
+													if (loading) {
+														return <h4 className="black_text text-center">loading</h4>
+													}
+													if (error) {
+														console.log(error);
+													}
+													const size = 11;
+													var items = data.data.slice(0, size).map(iteration => {
+    													return iteration													
+    												});	
+    												console.log(items)
+													return items.map((item) => {
+														console.log(item)
+														return (
+															 <tr>
+					                                            <td className="align-middle"><img className="crypt-star pr-1" alt="star" src={item.logo_url} width="15"/> {item.name}</td>
+					                                            <td className="align-middle"><span className="pr-2" data-toggle="tooltip" data-placement="right" title="$ 0.05">{item.price}</span></td>
+					                                            <td> <span className="d-block">{item.high}</span>
+					                                             {/* <b className="crypt-down">-7.7%</b> */}
+					                                             </td>
+					                                        </tr>
+														);
+													})
+												}
+											}
+										</Query>
+		                                  {/*      <tr>
 		                                            <td className="align-middle"><img className="crypt-star pr-1" alt="star" src="images/star.svg" width="15"/> BTC/USD</td>
 		                                            <td className="crypt-down align-middle"><span className="pr-2" data-toggle="tooltip" data-placement="right" title="$ 0.05">0.00004356</span></td>
 		                                            <td> <span className="d-block">5.3424984</span> <b className="crypt-down">-5.4%</b> </td>
@@ -255,7 +305,7 @@ constructor () {
 		                                            <td className="align-middle"><img className="crypt-star pr-1" alt="star" src="images/star.svg" width="15"/> VEN/BTC</td>
 		                                            <td className="align-middle"><span className="pr-2" data-toggle="tooltip" data-placement="right" title="$ 0.05">0.56723</span></td>
 		                                            <td> <span className="d-block">9.34546</span> <span>6.7%</span> </td>
-		                                        </tr>
+		                                        </tr>*/}
 		                                    </tbody>
 		                                </table>
 		                            </div>
@@ -269,6 +319,7 @@ constructor () {
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
+
 		                                        <tr>
 		                                            <td className="align-middle"><img className="crypt-star pr-1" alt="star" src="images/star.svg" width="15"/> ETH/BTC</td>
 		                                            <td className="align-middle"><span className="pr-2" data-toggle="tooltip" data-placement="right" title="$ 0.05">0.0000234</span></td>
@@ -479,7 +530,7 @@ constructor () {
 		             {/*   <TradingDashboard />*/}
 					{/* WIDGET BEGIN TRADING VIEW */}
 			
-					<div class="tradingview-widget-container">
+					<div className="tradingview-widget-container">
 					  <div id="tradingview_b1b00"></div>
 					</div>
 
@@ -576,7 +627,7 @@ constructor () {
 		                                            <td>0.0000567</td>
 		                                            <td>4.3456600</td>
 		                                        </tr>
-		                                        <tr>
+		                                   {/*     <tr>
 		                                            <td>22:35:59</td>
 		                                            <td className="crypt-up">0.0000234</td>
 		                                            <td>4.3456600</td>
@@ -625,7 +676,7 @@ constructor () {
 		                                            <td>22:35:59</td>
 		                                            <td>0.0000234</td>
 		                                            <td>4.3456600</td>
-		                                        </tr>
+		                                        </tr>*/}
 		                                    </tbody>
 		                                </table>
 		                            </div>
@@ -753,7 +804,7 @@ constructor () {
 		            <div className="col-xl-5">
 		                <div className="crypt-boxed-area">
 		                    <h6 className="crypt-bg-head"><b className="crypt-up">BUY</b> / <b className="crypt-down">SELL</b></h6>
-		                    <div className="row no-gutters">
+		                    <div className="row no-gutters back_white">
 		                        <div className="col-md-6">
 		                            <div className="crypt-buy-sell-form">
 		                                <p>Buy <span className="crypt-up">BTC</span> <span className="fright">Available: <b className="crypt-up">20 BTC</b></span></p>
@@ -828,7 +879,7 @@ constructor () {
 		                                <div role="tabpanel" className="tab-pane active" id="active-orders">
 		                                    <table className="table table-striped">
 		                                        <thead>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th scope="col">Time</th>
 		                                                <th scope="col">Buy/sell</th>
 		                                                <th scope="col">Price BTC</th>
@@ -843,7 +894,7 @@ constructor () {
 		                                <div role="tabpanel" className="tab-pane" id="closed-orders">
 		                                    <table className="table table-striped">
 		                                        <thead>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th scope="col">Time</th>
 		                                                <th scope="col">Buy/sell</th>
 		                                                <th scope="col">Price BTC</th>
@@ -853,7 +904,7 @@ constructor () {
 		                                            </tr>
 		                                        </thead>
 		                                        <tbody>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th>22:35:59</th>
 		                                                <td className="crypt-up">Buy</td>
 		                                                <td className="crypt-up">0.000056</td>
@@ -861,7 +912,7 @@ constructor () {
 		                                                <td className="crypt-up">0.0003456</td>
 		                                                <td>5.3424984</td>
 		                                            </tr>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th>22:35:59</th>
 		                                                <td className="crypt-down">Sell</td>
 		                                                <td className="crypt-down">0.000056</td>
@@ -869,7 +920,7 @@ constructor () {
 		                                                <td className="crypt-down">0.0003456</td>
 		                                                <td>5.3424984</td>
 		                                            </tr>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th>22:35:59</th>
 		                                                <td className="crypt-up">Buy</td>
 		                                                <td className="crypt-up">0.000056</td>
@@ -877,7 +928,7 @@ constructor () {
 		                                                <td className="crypt-up">0.0003456</td>
 		                                                <td>5.3424984</td>
 		                                            </tr>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th>22:35:59</th>
 		                                                <td className="crypt-down">Sell</td>
 		                                                <td className="crypt-down">0.000056</td>
@@ -885,7 +936,7 @@ constructor () {
 		                                                <td className="crypt-down">0.0003456</td>
 		                                                <td>5.3424984</td>
 		                                            </tr>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th>22:35:59</th>
 		                                                <td className="crypt-up">Buy</td>
 		                                                <td className="crypt-up">0.000056</td>
@@ -893,7 +944,7 @@ constructor () {
 		                                                <td className="crypt-up">0.0003456</td>
 		                                                <td>5.3424984</td>
 		                                            </tr>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th>22:35:59</th>
 		                                                <td className="crypt-down">Sell</td>
 		                                                <td className="crypt-down">0.000056</td>
@@ -901,7 +952,7 @@ constructor () {
 		                                                <td className="crypt-down">0.0003456</td>
 		                                                <td>5.3424984</td>
 		                                            </tr>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th>22:35:59</th>
 		                                                <td className="crypt-up">Buy</td>
 		                                                <td className="crypt-up">0.000056</td>
@@ -909,7 +960,7 @@ constructor () {
 		                                                <td className="crypt-up">0.0003456</td>
 		                                                <td>5.3424984</td>
 		                                            </tr>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th>22:35:59</th>
 		                                                <td className="crypt-down">Sell</td>
 		                                                <td className="crypt-down">0.000056</td>
@@ -917,7 +968,7 @@ constructor () {
 		                                                <td className="crypt-down">0.0003456</td>
 		                                                <td>5.3424984</td>
 		                                            </tr>
-		                                            <tr>
+		                                            <tr className="hover_change">
 		                                                <th>22:35:59</th>
 		                                                <td className="crypt-up">Buy</td>
 		                                                <td className="crypt-up">0.000056</td>
