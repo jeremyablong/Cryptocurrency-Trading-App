@@ -51,8 +51,8 @@ class Footer extends Component {
 					</div>	
 					<div className="row">
 						<div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-							<p><u><a href="/">National Transaction Corporation</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
-							<p className="h6">&copy All right Reversed.<a className="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
+							<p><u><a href="/">Crypto Chaining</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of We Code With Clarity, Charlotte, NC]</p>
+							<p className="h6">&copy All right reserved.<a className="text-green ml-2" href="https://www.wecodewithclarity.com" target="_blank">We Code With Clarity</a></p>
 						</div>
 						<hr />
 					</div>	

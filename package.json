@@ -52,6 +52,7 @@
     "kickbox": "^2.0.4",
     "lodash": "^4.17.15",
     "merge-graphql-schemas": "^1.6.1",
+    "moment": "^2.24.0",
     "mongodb": "^2.2.33",
     "mongoose": "^5.6.5",
     "nexmo": "^2.4.1",

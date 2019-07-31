@@ -128,7 +128,7 @@ constructor () {
 		return (
         <div>
         <TableData />
-            <div className="container-fluid register">
+            {/*<div className="container-fluid register">
                 <div className="row">
                     <div className="col-md-3 register-left">
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
@@ -241,7 +241,7 @@ constructor () {
                         </div>
                     </div>
                 </div>
-                </div>
+                </div>*/}
             </div>
 		);
 	}

@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { addPage } from "../../../actions/index.js";
 
 
-
 class Icons extends Component {
 	render() {
 		return (
@@ -16,13 +15,14 @@ class Icons extends Component {
 						<p className="text-center">Coinbase supports a variety of the most popular digital currencies.</p>
 					</div>
 				</div>
-				<div className="row">
+				{!localStorage.getItem("JWTToken") ? <div className="row">
 					<div className="col-md-12">
 					<Link to="/signup/initital">
 						<button className="btn btn-info" style={{ width: "100%" }}>SIGN UP TODAY!</button>
 					</Link>
 					</div>
-				</div>
+				</div> : null}
+				
 			</div>
 		</div>
 		);

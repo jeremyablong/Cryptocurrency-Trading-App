@@ -10,7 +10,9 @@ class HomepageMain extends Component {
 		return (
 			<div>
 				<Navigation />	
+
 				<LandingPage />
+				<TradingDashboard />
 				<OfficialLanding />
 				
 			</div>

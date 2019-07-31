@@ -25,14 +25,15 @@ router.get("/", (req, res) => {
 	//     console.log('A client is connected!');
 
 		const url = "https://"
-
 		var options = {
 		  "method": "GET",
 		  "hostname": "rest.coinapi.io",
-		  "Content-Type": "application/json",
-		  "path": "/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/latest?period_id=1MIN",
-		  "headers": {'X-CoinAPI-Key': '57F960B2-4279-44B7-8474-49F314CF6834'}
+		  "path": "/v1/ohlcv/BITSTAMP_SPOT_BTC_USD/history?period_id=1HRS&time_start=2019-07-27T00:00:00",
+		  "headers": {'X-CoinAPI-Key': '8CA1D81F-B5A8-49FE-87B3-5630DE1A7A96'}
 		};
+
+
+
 
 
 		https.get(options, (resp) => {

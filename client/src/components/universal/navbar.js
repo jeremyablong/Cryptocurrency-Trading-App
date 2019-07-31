@@ -61,6 +61,17 @@ class Navigation extends Component {
       );
     }
   };
+  renderSignUp = () => {
+    if (!localStorage.getItem("JWTToken")) {
+      return (
+        <Link to="/signup/initital">
+          <button onClick={this.redirectRegistration} className="btn btn-success register_btn">REGISTER</button>
+        </Link>
+      );
+    } else {
+      return null;
+    }
+  }
   render() {
     return (
       <div>
@@ -103,9 +114,7 @@ class Navigation extends Component {
                 {this.authorize()}
               </NavItem>
               <NavItem>
-              <Link to="/signup/initital">
-                <button onClick={this.redirectRegistration} className="btn btn-success register_btn">REGISTER</button>
-              </Link>
+              {this.renderSignUp()}
               </NavItem>
             </Nav>
           </Collapse>
