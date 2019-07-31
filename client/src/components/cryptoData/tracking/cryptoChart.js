@@ -53,7 +53,8 @@ constructor () {
 		let date = new Date();
 		// let timeStamp = date.getTime();
 		this.props.generateCryptoData()
-		axios.get("https://api.nomics.com/v1/candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=1h&currency=BTC&start=2019-07-18T00:00:00Z&end=2029-07-2T00:00:00Z").then((res) => {
+		const proxyurl = "https://cors-anywhere.herokuapp.com/";
+		axios.get(proxyurl + "https://api.nomics.com/v1/candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=1h&currency=BTC&start=2019-07-18T00:00:00Z&end=2029-07-2T00:00:00Z").then((res) => {
 			this.setState({
 				data: res.data
 			})
