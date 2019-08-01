@@ -220,11 +220,9 @@ constructor () {
 													var items = data.data.slice(0, size).map(iteration => {
     													return iteration													
     												});	
-    												console.log(items)
-													return items.map((item) => {
-														console.log(item)
+													return items.map((item, index) => {
 														return (
-															 <tr>
+															 <tr key={index}>
 					                                            <td className="align-middle"><img className="crypt-star pr-1" alt="star" src={item.logo_url} width="15"/> {item.name}</td>
 					                                            <td className="align-middle"><span className="pr-2" data-toggle="tooltip" data-placement="right" title="$ 0.05">{item.price}</span></td>
 					                                            <td> <span className="d-block">{item.high}</span>
