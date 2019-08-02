@@ -5,6 +5,8 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import Chart from "chart.js";
 import TradingDashboard from "../dashboard/main.js";
+import axios from "axios";
+import moment from "moment";
 
 const CRYPTO_QUERY = gql`
 	query {
@@ -31,10 +33,51 @@ constructor () {
 	super();
 
 	this.state = {
-
+		thirtyInterval: [],
+		headerData: [],
+		highLowData: []
 	}
 }
 	componentDidMount () {
+
+	axios.get("https://api.nomics.com/v1/exchange_candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=30m&exchange=binance&market=BTCUSDT&start=2019-07-14T00%3A00%3A00Z&end=2029-07-14T00%3A00%3A00Z").then((res) => {
+		this.setState({
+			thirtyInterval: res.data
+		})
+	}).catch((err) => {
+		console.log(err);
+	})
+	
+	axios.get("https://api.nomics.com/v1/currencies/ticker?key=561df32fa25fd3d93ae7064e0da5c8a2&ids=BTC&interval=1d").then((res) => {
+		console.log(res.data)
+		this.setState({
+			headerData: res.data
+		})
+	}).catch((err) => {
+		console.log(err);
+	})
+	let dateOriginal = new Date().toISOString();
+	
+	let first = dateOriginal.split("T")[0];
+
+	let days = 0;
+	var date = new Date(first);
+	var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+	let convert = last.toISOString();
+
+	console.log(convert);
+
+
+	axios.get(`https://api.nomics.com/v1/exchange_candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=1d&exchange=binance&market=BTCUSDT&start=${convert}&end=${dateOriginal}`).then((res) => {
+		console.log(res.data)
+		this.setState({
+			highLowData: res.data
+		})
+	}).catch((err) => {
+		console.log(err);
+	})
+
+
 	  const TradingView = window.TradingView;
       new TradingView.widget(
         {
@@ -221,6 +264,7 @@ constructor () {
     													return iteration													
     												});	
 													return items.map((item, index) => {
+														
 														return (
 															 <tr key={index}>
 					                                            <td className="align-middle"><img className="crypt-star pr-1" alt="star" src={item.logo_url} width="15"/> {item.name}</td>
@@ -488,34 +532,54 @@ constructor () {
 		                    </div>
 		                </div>
 		            </div>
-
 		            <div className="col-md-6 col-lg-6 col-xl-6 col-xxl-8">
 		                <div className="crypt-gross-market-cap mt-4">
 		                    <div className="row">
 		                        <div className="col-3 col-sm-6 col-md-6 col-lg-6">
 		                            <div className="row">
-		                                <div className="col-sm-6 col-md-6 col-lg-6">
-		                                    <p>Last Price BTC</p>
-		                                    <p>0.0234230 $0.04</p>
-		                                </div>
-		                                <div className="col-sm-6 col-md-6 col-lg-6">
-		                                    <p>Change BTC</p>
-		                                    <p className="crypt-down">-0.0234230 -3.35%</p>
-		                                </div>
+		                            {this.state.headerData.map((item, index) => {
+										return (
+											<div key={index} className="col-sm-6 col-md-6 col-lg-6">
+			                                    <p>Last Price BTC</p>
+			                                    <p>{item.price} USD</p>
+			                                </div>
+			                            );		
+										})}
+                                		{this.state.headerData.map((item, index) => {
+											for (let key in item) {
+												if (typeof item[key] === "object") {
+													return (
+													<div key={index}>
+														<div className="col-sm-6 col-md-6 col-lg-6">
+						                                    <p>Change BTC</p>
+						                                    {item[key].price_change > 0 ? <p className="crypt-up">{item[key].price_change} <span className="text-white">{item[key].price_change_pct}</span></p> : <p className="crypt-down">{item[key].price_change} <span className="text-white">{item[key].price_change_pct}</span></p>}
+						                                </div>
+								                    </div>
+					                               );
+												};
+											};
+										})}
 		                            </div>
 		                        </div>
-		                        <div className="col-3 col-sm-2 col-md-3 col-lg-2">
-		                            <p>High BTC</p>
-		                            <p className="crypt-up">0.435453</p>
-		                        </div>
-		                        <div className="col-3 col-sm-2 col-md-3 col-lg-2">
-		                            <p>Low BTC</p>
-		                            <p className="crypt-down">0.09945</p>
-		                        </div>
-		                        <div className="col-3 col-sm-2 col-md-3 col-lg-2">
-		                            <p>Volume 24Hr</p>
-		                            <p className="crypt-down">12.33445</p>
-		                        </div>
+		                       {this.state.highLowData.map((item, index) => {
+		                       	console.log(item)
+									return (
+									<React.Fragment>
+										<div className="col-3 col-sm-2 col-md-3 col-lg-2">
+		                            		<p>High BTC</p>
+				                            {item.open < item.close ? <p className="crypt-up">{item.high}</p> : <p className="crypt-down">{item.high}</p>}
+				                        </div>
+				                        <div className="col-3 col-sm-2 col-md-3 col-lg-2">
+				                            <p>Low BTC</p>
+				                            <p className="crypt-down">{item.low}</p>
+				                        </div>
+				                        <div className="col-3 col-sm-2 col-md-3 col-lg-2">
+				                            <p>Volume 24Hr</p>
+				                            <p className="crypt-down">{item.volume}</p>
+				                        </div>
+				                    </React.Fragment>
+		                            );		
+								})}
 		                    </div>
 		                </div>
 		                <div className="tradingview-widget-container mb-3">
@@ -570,61 +634,19 @@ constructor () {
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td className="crypt-down">0.000056</td>
-		                                            <td>5.3424984</td>
-		                                        </tr>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td>0.0000564</td>
-		                                            <td>6.6768876</td>
-		                                        </tr>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td>0.0000234</td>
-		                                            <td>4.3456600</td>
-		                                        </tr>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td className="crypt-up">0.0000234</td>
-		                                            <td>4.3456600</td>
-		                                        </tr>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td>0.0000567</td>
-		                                            <td>4.3456600</td>
-		                                        </tr>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td className="crypt-up">0.0000234</td>
-		                                            <td>4.3456600</td>
-		                                        </tr>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td>0.0000567</td>
-		                                            <td>4.3456600</td>
-		                                        </tr>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td>0.0000564</td>
-		                                            <td>6.6768876</td>
-		                                        </tr>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td>0.0000234</td>
-		                                            <td>4.3456600</td>
-		                                        </tr>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td className="crypt-up">0.0000234</td>
-		                                            <td>4.3456600</td>
-		                                        </tr>
-		                                        <tr>
-		                                            <td>22:35:59</td>
-		                                            <td>0.0000567</td>
-		                                            <td>4.3456600</td>
-		                                        </tr>
+		                                    {this.state.thirtyInterval.slice(0, 12).map((item, index) => {
+		                                    	let h = new Date(item.timestamp).getHours();
+		                                    	let m = new Date(item.timestamp).getMinutes();
+		                                    	return (
+													<tr key={index}>
+			                                            <td>{m === 0 ? h + ":" + m + "0" : h + ":" + m}</td>
+			                                            {item.open < item.close ? <td className="crypt-up">{Math.round(item.open)}</td> : <td className="crypt-down">{Math.round(item.open)}</td>}
+			                                            <td>{item.volume}</td>
+			                                        </tr>
+		                                    	);
+		                                    })}
+		                                        
+		                           
 		                                   {/*     <tr>
 		                                            <td>22:35:59</td>
 		                                            <td className="crypt-up">0.0000234</td>

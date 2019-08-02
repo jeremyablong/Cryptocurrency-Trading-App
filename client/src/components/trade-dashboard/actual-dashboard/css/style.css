@@ -21,6 +21,11 @@ Table Of contents
 ------------- Helper Class ---------------
  */
 
+.bids-asks {
+    height: 50%;
+    background: grey !important;
+}
+
 body{
     background: #f9faff;
     overflow-x: hidden;
