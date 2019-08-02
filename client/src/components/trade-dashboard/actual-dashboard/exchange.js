@@ -40,7 +40,9 @@ constructor () {
 }
 	componentDidMount () {
 
-	axios.get("https://api.nomics.com/v1/exchange_candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=30m&exchange=binance&market=BTCUSDT&start=2019-07-14T00%3A00%3A00Z&end=2029-07-14T00%3A00%3A00Z").then((res) => {
+	const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+	axios.get(proxyurl + "https://api.nomics.com/v1/exchange_candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=30m&exchange=binance&market=BTCUSDT&start=2019-07-14T00%3A00%3A00Z&end=2029-07-14T00%3A00%3A00Z").then((res) => {
 		this.setState({
 			thirtyInterval: res.data
 		})
@@ -48,7 +50,7 @@ constructor () {
 		console.log(err);
 	})
 	
-	axios.get("https://api.nomics.com/v1/currencies/ticker?key=561df32fa25fd3d93ae7064e0da5c8a2&ids=BTC&interval=1d").then((res) => {
+	axios.get(proxyurl + "https://api.nomics.com/v1/currencies/ticker?key=561df32fa25fd3d93ae7064e0da5c8a2&ids=BTC&interval=1d").then((res) => {
 		console.log(res.data)
 		this.setState({
 			headerData: res.data
@@ -68,7 +70,7 @@ constructor () {
 	console.log(convert);
 
 
-	axios.get(`https://api.nomics.com/v1/exchange_candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=1d&exchange=binance&market=BTCUSDT&start=${convert}&end=${dateOriginal}`).then((res) => {
+	axios.get(proxyurl + `https://api.nomics.com/v1/exchange_candles?key=561df32fa25fd3d93ae7064e0da5c8a2&interval=1d&exchange=binance&market=BTCUSDT&start=${convert}&end=${dateOriginal}`).then((res) => {
 		console.log(res.data)
 		this.setState({
 			highLowData: res.data
