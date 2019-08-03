@@ -551,12 +551,12 @@ constructor () {
 											for (let key in item) {
 												if (typeof item[key] === "object") {
 													return (
-													<div key={index}>
-														<div className="col-sm-6 col-md-6 col-lg-6">
+													
+														<div key={index} className="col-sm-6 col-md-6 col-lg-6">
 						                                    <p>Change BTC</p>
-						                                    {item[key].price_change > 0 ? <p className="crypt-up">{item[key].price_change} <span className="text-white">{item[key].price_change_pct}%</span></p> : <p className="crypt-down">{item[key].price_change} <span className="text-white">{item[key].price_change_pct}</span></p>}
+						                                    {item[key].price_change > 0 ? <p className="crypt-up">{item[key].price_change} <span className="text-white">{Math.round(item[key].price_change_pct * 100) / 100}%</span></p> : <p className="crypt-down">{item[key].price_change} <span className="text-white">{item[key].price_change_pct}</span></p>}
 						                                </div>
-								                    </div>
+								              
 					                               );
 												};
 											};
