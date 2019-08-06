@@ -267,7 +267,6 @@ constructor () {
 												return iteration													
 											});	
 											return items.map((item, index) => {
-												
 												return (
 													 <tr key={index}>
 			                                            <td className="align-middle"><img className="crypt-star pr-1" alt="star" src={item.logo_url} width="15"/> {item.name}</td>

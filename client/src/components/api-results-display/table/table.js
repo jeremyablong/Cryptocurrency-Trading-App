@@ -216,6 +216,7 @@ constructor () {
 			        />
 		        );
 				 }
+				 return null
 		        }
 				}
 			</Query>

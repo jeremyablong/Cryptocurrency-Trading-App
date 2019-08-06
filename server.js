@@ -39,8 +39,6 @@ ws.on('message', function incoming(data) {
 });
 
 
-const port = process.env.PORT || 8080;
-
 // graphqlSchemaIntervals
 app.use(cors());
 app.options('*', cors());
@@ -100,10 +98,13 @@ if (process.env.NODE_ENV === "production") {
 	})
 }; 
 
-server.listen(port, () => console.log(`Listening on port ${port}`));
-
 
 const PORT = process.env.PORT || 5000;
+
+
+app.listen(PORT, () => {
+	console.log(`App is listening at port ${PORT}`)
+})
 
 
 // // When a client connects, we note it in the console
@@ -145,9 +146,6 @@ const PORT = process.env.PORT || 5000;
 // 	console.log(`Socket.io listening on port ${SOCKET_PORT}`)
 // });
 
-app.listen(PORT, () => {
-	console.log(`App is listening at port ${PORT}`)
-})
 
 
 

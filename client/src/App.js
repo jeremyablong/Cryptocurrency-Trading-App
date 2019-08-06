@@ -20,6 +20,7 @@ import TradingDashboard from "./components/trade-dashboard/dashboard/main.js";
 const client = new ApolloClient({
   // uri: "https://lit-fortress-30165.herokuapp.com/graphql"
   uri: "https://lit-fortress-30165.herokuapp.com/graphql"
+  // uri: "http://localhost:5000/graphql"
 })
 
 class App extends Component {
