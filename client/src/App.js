@@ -57,7 +57,7 @@ render () {
             <Route exact path="/tracking/table" component={TableData} />
             <Route exact path="/tracking/table" component={Footer} />
 
-
+            
           {/* redux form - signup */}
           <Route exact path="/signup/initital" component={Navigation} />
           <Route exact path="/signup/initital" component={ReduxPageOneSignup} />

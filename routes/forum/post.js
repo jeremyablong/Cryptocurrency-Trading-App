@@ -15,7 +15,7 @@ mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 				console.log(result);
 			});
 
-			console.log(result);
+			
 
 	        let user = new User({
 	        	title, 

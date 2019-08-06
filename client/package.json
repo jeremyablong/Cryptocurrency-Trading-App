@@ -37,6 +37,7 @@
     "react-stockcharts": "^0.7.8",
     "react-table": "^6.10.0",
     "react-tilt": "^0.1.4",
+    "react-websocket": "^2.0.1",
     "reactstrap": "^8.0.1",
     "recharts": "^1.6.2",
     "redux": "^4.0.4",

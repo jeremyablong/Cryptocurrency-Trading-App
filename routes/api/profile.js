@@ -25,7 +25,6 @@ mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 			country, 
 			checkbox
 		});
-		console.log(NewUser)
 		res.header("Access-Control-Allow-Origin", "*");
 	    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     	db.collection('users', function(err, collection) {
@@ -42,7 +41,6 @@ mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 					res.json({
 						token: token
 					})
-					console.log(token)
 					res.cookie('token', token, { httpOnly: true }).sendStatus(200);
 					console.log(token)
 	       		})
@@ -66,7 +64,7 @@ mongo.connect(config.get("mongoURI"), cors(), function(err, db) {
 		res.header("Access-Control-Allow-Origin", "*");
 	    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 		db.collection("users").find({}).toArray(function (err, result) {
-			console.log(result);
+			
 			if (err) {
 				console.log(err);
 			}

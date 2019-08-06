@@ -17,34 +17,38 @@ const https = require("https");
 const http = require("http");
 const CircularJSON = require("circular-json");
 const BJSON = require('buffer-json')
+const server = http.createServer(app);
+const io = socketIo(server);
+const WebSocket = require('ws');
+
+const ws = new WebSocket('wss://ws-sandbox.coinapi.io/v1/');
+
+ws.on('open', function open() {
+  ws.send(JSON.stringify({
+	  "type": "hello",
+	  "apikey": "8CA1D81F-B5A8-49FE-87B3-5630DE1A7A96",
+	  "heartbeat": true,
+	  "subscribe_data_type": ["quote"],
+	  "subscribe_filter_asset_id": ["BTC", "ETH"],
+	  "time_exchange": "2019-08-05T03:25:00.0000000Z"
+	}))
+});
+
+ws.on('message', function incoming(data) {
+	console.log(data)
+});
+
+
+const port = process.env.PORT || 8080;
 
 // graphqlSchemaIntervals
 app.use(cors());
 app.options('*', cors());
 
 
-// Loading the index file . html displayed to the client
-var server = http.createServer(function(req, res) {
-	
-});
-
-// Loading socket.io
-var io = require('socket.io').listen(server);
-
-
-
-
-
-// connect db
 connectDB();
 
 
-// app.use(function (req, res, next) {
-//     req.ws = ws;
-//     return next();
-// });
-
-// next line is the money
 app.set('socketio', io);
 
 
@@ -68,7 +72,7 @@ app.use("/authenticate", require("./routes/api/authenticate.js"));
 app.use("/twostep/authenitcate", require("./routes/2-step/email-2-step.js"));
 app.use("/chart/data", require("./routes/charts/index.js"));
 app.use("/chart/gdax", require("./routes/charts/socket.io/index.js"));
-
+app.use("/btc/bids-asks", require("./routes/charts/BTC/bids-asks.js"));
 
 
 
@@ -95,6 +99,9 @@ if (process.env.NODE_ENV === "production") {
 	  }
 	})
 }; 
+
+server.listen(port, () => console.log(`Listening on port ${port}`));
+
 
 const PORT = process.env.PORT || 5000;
 

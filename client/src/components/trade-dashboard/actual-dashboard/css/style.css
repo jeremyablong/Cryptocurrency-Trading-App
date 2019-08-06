@@ -839,7 +839,12 @@ body.crypt-dark .crypt-sell{
     padding: 20px;
     border-top: 1px solid #233161;
 }
-
+table .table .table-striped {
+    width: 100%;
+    min-width: 100%;
+    background: black;
+    height: 100%;
+}
 /*0--- market Capacity ----*/
 .crypt-table-striped tbody tr:nth-of-type(even){
     background-color:  #233161 !important; 
@@ -1142,10 +1147,19 @@ body.crypt-dark .crypt-withdraw-body .nav-pills a.active{
     border-left: 1px solid #f1f1f1;
     padding: 30px;
 }
-
+.table_body {
+    background: black;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100% !important;
+}
 body.crypt-dark .crypt-withdraw-body .tab-content{
     border-left: 1px solid #2f3a56;
     padding: 30px;
+}
+.tab-pane {
+    width: 100%;
+    max-width: 100%;
 }
 .crypt-withdraw-body .tab-content .tab-pane{}
 
