@@ -43,12 +43,12 @@ constructor () {
 	render() {
 		return (
 		<React.Fragment>
-			<div className="table_body">
+			<tr>
 			
 			{this.state.data.map((item, index) => {
 				return <BA data={item} key={index}/>
 			})}
-			</div>
+			</tr>
 		</React.Fragment>
 		);
 	}

@@ -15,6 +15,7 @@ import store from "./store/store.js";
 import ReduxPageOneSignup from "./components/redux-form/signup/page-1.js";
 import Validate from "./components/redux-form/signup/validate.js";
 import TradingDashboard from "./components/trade-dashboard/dashboard/main.js";
+
 // change this before deployment
 const client = new ApolloClient({
   // uri: "https://lit-fortress-30165.herokuapp.com/graphql"

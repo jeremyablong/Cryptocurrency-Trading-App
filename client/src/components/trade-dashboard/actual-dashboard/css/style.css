@@ -1137,6 +1137,9 @@ body.crypt-dark .crypt-withdraw-body .nav-pills a.active{
     background: transparent;
     color: #f7614e;
 }
+.right {
+    padding-left: 10px;
+}
 .crypt-withdraw-body .nav-pills a i{
     font-weight: 600;
     vertical-align: middle;

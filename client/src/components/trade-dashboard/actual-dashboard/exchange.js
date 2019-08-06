@@ -294,7 +294,7 @@ constructor () {
                                             <th scope="col">Asks</th>*/}
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className="table_body">
 								{/* ASKS BIDS COMPONENT IMPORTED */}
                                         <AsksBids />
                                         
@@ -625,7 +625,7 @@ constructor () {
                                 <div className="crypt-buy">
                                     <div className="input-group mb-3">
                                         <div className="input-group-prepend"> <span className="input-group-text">Price</span> </div>
-                                        <input type="text" className="form-control" placeholder="0.02323476" readonly/>
+                                        <input type="text" className="form-control" placeholder="0.02323476" readOnly/>
                                         <div className="input-group-append"> <span className="input-group-text">BTC</span> </div>
                                     </div>
                                     <div className="input-group mb-3">
@@ -635,7 +635,7 @@ constructor () {
                                     </div>
                                     <div className="input-group mb-3">
                                         <div className="input-group-prepend"> <span className="input-group-text">Total</span> </div>
-                                        <input type="text" className="form-control" readonly/>
+                                        <input type="text" className="form-control" readOnly/>
                                         <div className="input-group-append"> <span className="input-group-text">BTC</span> </div>
                                     </div>
                                     <div>
@@ -654,7 +654,7 @@ constructor () {
                                 <div className="crypt-sell">
                                     <div className="input-group mb-3">
                                         <div className="input-group-prepend"> <span className="input-group-text">Price</span> </div>
-                                        <input type="text" className="form-control" placeholder="0.02323476" readonly/>
+                                        <input type="text" className="form-control" placeholder="0.02323476" readOnly/>
                                         <div className="input-group-append"> <span className="input-group-text">BTC</span> </div>
                                     </div>
                                     <div className="input-group mb-3">
@@ -664,7 +664,7 @@ constructor () {
                                     </div>
                                     <div className="input-group mb-3">
                                         <div className="input-group-prepend"> <span className="input-group-text">Total</span> </div>
-                                        <input type="text" className="form-control" readonly/>
+                                        <input type="text" className="form-control" readOnly/>
                                         <div className="input-group-append"> <span className="input-group-text">BTC</span> </div>
                                     </div>
                                     <div>
