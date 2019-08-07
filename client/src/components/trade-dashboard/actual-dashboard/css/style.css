@@ -20,12 +20,27 @@ Table Of contents
 /* 
 ------------- Helper Class ---------------
  */
-
+.crypt-big-list li a {
+    color: gold !important;
+}
+.crypt-big-list li a:hover {
+    color: black !important;
+}
 .bids-asks {
     height: 50%;
     background: grey !important;
 }
 
+.crypt-withdraw-body {
+    background: black !important;
+    color: white;
+}
+.fright b {
+    color: #26ad03;
+}
+.linklink {
+    color: white !important;
+}
 body{
     background: #f9faff;
     overflow-x: hidden;
@@ -1165,6 +1180,7 @@ body.crypt-dark .crypt-withdraw-body .tab-content{
     max-width: 100%;
 }
 .crypt-withdraw-body .tab-content .tab-pane{}
+
 
 /*---- deposit form ----*/
 .deposit-form{}

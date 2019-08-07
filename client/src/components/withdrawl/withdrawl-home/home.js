@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import "../../trade-dashboard/actual-dashboard/css/style.css";
+import "../../trade-dashboard/actual-dashboard/css/ui.css";
 
 class WithdrawlHome extends Component {
 	render() {
 		return (
-			<div>
+			<div className="background_black">
 <div className="crypt-side-menu crypt-left-sided crypt-floatable-menu bg-white">
 		<ul>
 			<li><a href=""><i className="pe-7s-graph1"></i> Dashboard</a></li>
@@ -22,7 +23,7 @@ class WithdrawlHome extends Component {
 			<li><a href=""><i className="pe-7s-cash"></i> Card</a></li>
 			<li><a href=""><i className="pe-7s-wristwatch"></i> History</a></li>
 		</ul>
-	</div>	
+	</div>
 	<div className="container-full-width">
 		<div className="row sm-gutters">
 			<div className="col-xl-2 d-none d-xl-block">	
@@ -38,37 +39,37 @@ class WithdrawlHome extends Component {
 					<ul className="crypt-big-list crypt-coin-select">
 						<li>
 							<a href="#bitcoin">
-								<img src="images/coins/btc.png" width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Bitcoin <p className="fright"><b>$456568</b></p>
+								<img src={require("./images/coins/btc.png")} width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Bitcoin <p className="fright"><b>$456568</b></p>
 							</a>
 						</li>
 						<li>
 							<a href="#ethrium">
-								<img src="images/coins/eth.png" width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Ethrium <p className="fright"><b>$456568</b></p>
+								<img src={require("./images/coins/eth.png")} width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Ethrium <p className="fright"><b>$456568</b></p>
 							</a>
 						</li>
 						<li>
 							<a href="#litecoin">
-								<img src="images/coins/ltc.png" width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Litecoin <p className="fright crypt-down"><b>$456568</b></p>
+								<img src={require("./images/coins/ltc.png")} width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Litecoin <p className="fright crypt-down"><b>$456568</b></p>
 							</a>
 						</li>
 						<li>
 							<a href="#xrp">
-								<img src="images/coins/xrp.png" width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> XRP <p className="fright"><b>$456568</b></p>
+								<img src={require("./images/coins/xrp.png")} width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> XRP <p className="fright"><b>$456568</b></p>
 							</a>
 						</li>
 						<li>
 							<a href="#monero">
-								<img src="images/coins/monero.png" width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Monero <p className="fright"><b>$456568</b></p>
+								<img src={require("./images/coins/monero.png")} width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Monero <p className="fright"><b>$456568</b></p>
 							</a>
 						</li>
 						<li>
 							<a href="#zilliqua">
-								<img src="images/coins/zil.png" width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Zilliqua <p className="fright"><b>$456568</b></p>
+								<img src={require("./images/coins/zil.png")} width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Zilliqua <p className="fright"><b>$456568</b></p>
 							</a>
 						</li>
 						<li>
 							<a href="#dash">
-								<img src="images/coins/dash.png" width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Dash <p className="fright"><b>$456568</b></p>
+								<img src={require("./images/coins/dash.png")} width="25" className="crypt-market-cap-logo pr-2" alt="coin"/> Dash <p className="fright"><b>$456568</b></p>
 							</a>
 						</li>
 					</ul>
@@ -97,7 +98,7 @@ class WithdrawlHome extends Component {
 							<div className="col-md-3">
 							<div className="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
 								<a 
-									className="nav-link active" 
+									className="nav-link linklink active" 
 									id="v-pills-zilliqua-btc-deposit-tab" 
 									data-toggle="pill" 
 									href="#v-pills-zilliqua-btc-deposit" 
@@ -108,7 +109,7 @@ class WithdrawlHome extends Component {
 								</a>
 
 								<a 
-									className="nav-link" 
+									className="nav-link linklink" 
 									id="v-pills-zilliqua-btc-withdrawl-tab" 
 									data-toggle="pill"
 									href="#v-pills-zilliqua-btc-withdrawl" 
@@ -119,7 +120,7 @@ class WithdrawlHome extends Component {
 								</a>
 
 								<a 
-									className="nav-link" 
+									className="nav-link linklink" 
 									id="v-pills-zilliqua-btc-history-tab" 
 									data-toggle="pill" 
 									href="#v-pills-zilliqua-btc-history" 
@@ -130,7 +131,7 @@ class WithdrawlHome extends Component {
 								</a>
 
 								<a 
-									className="nav-link" 
+									className="nav-link linklink" 
 									id="v-pills-zilliqua-btc-buysell-tab" 
 									data-toggle="pill" 
 									href="#v-pills-zilliqua-btc-buysell" 
@@ -191,7 +192,7 @@ class WithdrawlHome extends Component {
 										  	</select>
 										</div>
 										<div className="text-center crypt-up mt-5 mb-5">
-											<p>You will approximately pay</p>
+											<p className="text-black">You will approximately pay</p>
 											<h3>$500</h3>
 										</div>
 										<a href="" className="crypt-button-red-full">Proceed To Payment</a>
