@@ -35,7 +35,7 @@ ws.on('open', function open() {
 });
 
 ws.on('message', function incoming(data) {
-	console.log(data)
+	// console.log(data)
 });
 
 
@@ -85,18 +85,16 @@ app.get('*', function(req, res) {
   res.sendFile(__dirname, './client/public/index.html')
 })
 
-if (process.env.NODE_ENV === "production") {
-	// Express will serve up production files
-	app.use(express.static("client/build"));
-	// serve up index.html file if it doenst recognize the route
-	app.get('*', cors(), function(_, res) {
-	  res.sendFile(__dirname, './client/build/index.html'), function(err) {
-	    if (err) {
-	      res.status(500).send(err)
-	    }
-	  }
-	})
-}; 
+app.use(express.static("client/build"));
+// serve up index.html file if it doenst recognize the route
+app.get('*', cors(), function(_, res) {
+  res.sendFile(__dirname, './client/build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  }
+})
+
 
 
 const PORT = process.env.PORT || 5000;
