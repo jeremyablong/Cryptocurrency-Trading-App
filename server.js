@@ -85,16 +85,18 @@ app.get('*', function(req, res) {
   res.sendFile(__dirname, './client/public/index.html')
 })
 
-app.use(express.static("client/build"));
-// serve up index.html file if it doenst recognize the route
-app.get('*', cors(), function(_, res) {
-  res.sendFile(__dirname, './client/build/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  }
-})
-
+if (process.env.NODE_ENV === "production") {
+	// Express will serve up production files
+	app.use(express.static("client/build"));
+	// serve up index.html file if it doenst recognize the route
+	app.get('*', cors(), function(_, res) {
+	  res.sendFile(__dirname, './client/build/index.html'), function(err) {
+	    if (err) {
+	      res.status(500).send(err)
+	    }
+	  }
+	})
+}; 
 
 
 const PORT = process.env.PORT || 5000;
