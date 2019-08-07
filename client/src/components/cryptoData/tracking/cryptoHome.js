@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from "../../universal/navbar.js";
-import CryptoChart from "./cryptoChart.js";
+import HomeHome from "../../withdrawl/home.js";
 
 
 class DietTracking extends Component {
@@ -8,7 +8,7 @@ class DietTracking extends Component {
 		return (
 		<div>
 			<Navigation />
-			<CryptoChart />
+			<HomeHome />
 		</div>
 		);
 	}

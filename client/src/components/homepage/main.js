@@ -13,7 +13,6 @@ class HomepageMain extends Component {
 				<LandingPage />
 				<Exchange />
 				<MarketCap />
-				
 			</div>
 		);
 	}
